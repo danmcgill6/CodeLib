@@ -1,9 +1,7 @@
-
-
-
 import React, { Component } from 'react';
 import '../App.css';
-import {Editor, EditorState,RichUtils} from 'draft-js';
+import {Editor, EditorState,RichUtils,convertToRaw} from 'draft-js';
+import StyleButton from './StyleButton'
 
 class CodeInput extends Component {
     constructor(props) {
@@ -12,7 +10,7 @@ class CodeInput extends Component {
 
         this.focus = () => this.refs.editor.focus();
         this.onChange = (editorState) => {
-            console.log('value',editorState.getCurrentContent())
+            console.log('value', convertToRaw(editorState.getCurrentContent()))
             this.setState({editorState});
         }
 
@@ -62,7 +60,7 @@ class CodeInput extends Component {
         // either style the placeholder or hide it. Let's just hide it now.
         let className = 'RichEditor-editor';
         var contentState = editorState.getCurrentContent();
-        console.log(contentState)
+
         if (!contentState.hasText()) {
           if (contentState.getBlockMap().first().getType() !== 'unstyled') {
             className += ' RichEditor-hidePlaceholder';
@@ -114,28 +112,7 @@ class CodeInput extends Component {
       }
     }
 
-    class StyleButton extends React.Component {
-      constructor() {
-        super();
-        this.onToggle = (e) => {
-          e.preventDefault();
-          this.props.onToggle(this.props.style);
-        };
-      }
 
-      render() {
-        let className = 'RichEditor-styleButton';
-        if (this.props.active) {
-          className += ' RichEditor-activeButton';
-        }
-
-        return (
-          <span className={className} onMouseDown={this.onToggle}>
-            {this.props.label}
-          </span>
-        );
-      }
-    }
 
     const BLOCK_TYPES = [
       {label: 'H1', style: 'header-one'},

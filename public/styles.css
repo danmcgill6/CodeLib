@@ -1,3 +1,10 @@
+pre {
+    font-family: monospace, monospace;
+    font-size: 1em;
+    overflow: auto;
+}
+
+
 .RichEditor-root {
     background: #fff;
     border: 1px solid #ddd;
@@ -11,6 +18,7 @@
     cursor: text;
     font-size: 16px;
     margin-top: 10px;
+    overflow: auto;
   }
   
   .RichEditor-editor .public-DraftEditorPlaceholder-root,
