@@ -23,10 +23,9 @@ class RenderCode extends Component {
       }
 
       componentDidMount(){
-          axios.get(`http://localhost:8080/api/code/${1}`)
+          axios.get(`http://localhost:8080/api/code/${10}`)
           .then(res =>{
             const newContentState = convertFromRaw(JSON.parse(res.data.code))
-             console.log('data', newContentState)
              const editorState = EditorState.push(this.state.editorState, newContentState)
              this.setState({editorState})
           })
