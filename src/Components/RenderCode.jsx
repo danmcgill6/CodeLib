@@ -4,13 +4,14 @@ import axios from 'axios'
 import {Editor, EditorState,RichUtils,convertToRaw} from 'draft-js';
 import StyleButton from './StyleButton'
 
-class CodeInput extends Component {
+class RenderCode extends Component {
     constructor(props) {
         super(props);
         this.state = {editorState: EditorState.createEmpty(), value: ''};
 
         this.focus = () => this.refs.editor.focus();
         this.onChange = (editorState) => {
+            console.log('value', convertToRaw(editorState.getCurrentContent()).blocks[0].text)
             this.setState({editorState});
         }
 
@@ -21,8 +22,16 @@ class CodeInput extends Component {
         this.onSubmit = this.onSubmit.bind(this)
       }
 
+      componentDidMount(){
+          axios.get(`http://localhost:8080/api/code/${1}`)
+          .then(res =>{
+              console.log('data', JSON.parse(res.data.code))
+            this.setState({ editorState : EditorState.createWithContent(JSON.parse(res.data.code))})
+          })
+      }
+
       onSubmit(e){
-          let code = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()))
+          let code = convertToRaw(this.state.editorState.getCurrentContent()).blocks[0].text
           axios.post('http://localhost:8080/api/code', { code })
           .then(res => console.log(res))
       }
@@ -184,4 +193,4 @@ class CodeInput extends Component {
 
 
 
-export default CodeInput;
+export default RenderCode;
