@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios'
-import {Editor, EditorState,RichUtils,convertToRaw} from 'draft-js';
+import {Editor, EditorState,RichUtils,convertToRaw,convertFromRaw} from 'draft-js';
 import StyleButton from './StyleButton'
 
 class RenderCode extends Component {
@@ -25,8 +25,10 @@ class RenderCode extends Component {
       componentDidMount(){
           axios.get(`http://localhost:8080/api/code/${1}`)
           .then(res =>{
-              console.log('data', JSON.parse(res.data.code))
-            this.setState({ editorState : EditorState.createWithContent(JSON.parse(res.data.code))})
+            const newContentState = convertFromRaw(JSON.parse(res.data.code))
+             console.log('data', newContentState)
+             const editorState = EditorState.push(this.state.editorState, newContentState)
+             this.setState({editorState})
           })
       }
 

@@ -22,7 +22,7 @@ class CodeInput extends Component {
       }
 
       onSubmit(e){
-          let code = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()))
+          let code = JSON.stringify(this.state.editorState.getCurrentContent())
           axios.post('http://localhost:8080/api/code', { code })
           .then(res => console.log(res))
       }
