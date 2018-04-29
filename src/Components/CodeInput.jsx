@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios'
-import {Editor, EditorState,RichUtils,convertToRaw} from 'draft-js';
+import {Editor, EditorState,RichUtils,convertToRaw, ContentState, Modifier} from 'draft-js';
 import StyleButton from './StyleButton'
+import SubmitModal from './SubmitModal'
 
 class CodeInput extends Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class CodeInput extends Component {
         this.toggleBlockType = (type) => this._toggleBlockType(type);
         this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
         this.onSubmit = this.onSubmit.bind(this)
+        this.handlePastedText = this. handlePastedText.bind(this)
       }
 
       onSubmit(e){
@@ -35,6 +37,13 @@ class CodeInput extends Component {
           return true;
         }
         return false;
+      }
+      handlePastedText(text) {
+        const {editorState} = this.state;
+        const blockMap = ContentState.createFromText(text.trim()).blockMap;
+        const newState = Modifier.replaceWithFragment(editorState.getCurrentContent(), editorState.getSelection(), blockMap);
+        this.onChange(EditorState.push(editorState, newState, 'insert-fragment'));
+        return true;
       }
 
       _onTab(e) {
@@ -89,15 +98,17 @@ class CodeInput extends Component {
                 blockStyleFn={getBlockStyle}
                 customStyleMap={styleMap}
                 editorState={editorState}
+                handlePastedText={this.handlePastedText}
                 handleKeyCommand={this.handleKeyCommand}
                 onChange={this.onChange}
                 onTab={this.onTab}
                 placeholder="Write code and annotations..."
-                ref="editor"
+             
                 spellCheck={true}
               />
             </div>
             <button onClick={this.onSubmit}>Save code</button>
+            <SubmitModal />
           </div>
         );
       }
@@ -181,6 +192,7 @@ class CodeInput extends Component {
         </div>
       );
     };
+
 
 
 

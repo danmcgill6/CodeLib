@@ -4,6 +4,14 @@ pre {
     overflow: auto;
 }
 
+#side-nav {
+  background: '#2c3e50';
+  color: '#FFF';
+  width: 20%;
+}
+
+
+
 
 .RichEditor-root {
     background: #fff;
@@ -11,6 +19,7 @@ pre {
     font-family: 'Georgia', serif;
     font-size: 14px;
     padding: 15px;
+    margin-top: 50px;
   }
   
   .RichEditor-editor {
