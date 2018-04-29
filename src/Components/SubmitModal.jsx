@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import Collapsible from 'react-collapsible';
+
 
 const customStyles = {
   content : {
@@ -55,15 +57,20 @@ export default class SubmitModal extends React.Component {
         >
 
           <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+       
+          <Collapsible trigger="Folder One">
+                <p>This is the collapsible content. It can be any element or React component you like.</p>
+                <p>It can even be another Collapsible component. Check out the next section!</p>
+          </Collapsible>
+          <Collapsible trigger="Start here">
+                <p>This is the collapsible content. It can be any element or React component you like.</p>
+                <p>It can even be another Collapsible component. Check out the next section!</p>
+          </Collapsible>
+          <Collapsible trigger="Start here">
+                <p>This is the collapsible content. It can be any element or React component you like.</p>
+                <p>It can even be another Collapsible component. Check out the next section!</p>
+          </Collapsible>
           <button onClick={this.closeModal}>close</button>
-          <div>I am a modal</div>
-          <form>
-            <input />
-            <button>tab navigation</button>
-            <button>stays</button>
-            <button>inside</button>
-            <button>the modal</button>
-          </form>
         </Modal>
       </div>
     );
