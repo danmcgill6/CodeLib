@@ -25,7 +25,8 @@ export default class SubmitModal extends React.Component {
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      folders:[]
     };
 
     this.openModal = this.openModal.bind(this);
@@ -37,7 +38,7 @@ export default class SubmitModal extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     }})
-        .then(res => console.log(res))
+        .then(res => this.setState({folders:res.data}))
   }
 
   openModal() {
@@ -54,6 +55,8 @@ export default class SubmitModal extends React.Component {
   }
 
   render() {
+    console.log('state', this.state)
+    const roots = this.state.folders.map(folder =>  <Collapsible trigger={folder.name}></Collapsible>)
     return (
       <div id='yourAppElement'>
         <button onClick={this.openModal}>Open Modal</button>
@@ -67,18 +70,9 @@ export default class SubmitModal extends React.Component {
 
           <h2>Choose a folder</h2>
        
-          <Collapsible trigger="Start here">
-                <p>This is the collapsible content. It can be any element or React component you like.</p>
-                <p>It can even be another Collapsible component. Check out the next section!</p>
-          </Collapsible>
-          <Collapsible trigger="Start here">
-                <p>This is the collapsible content. It can be any element or React component you like.</p>
-                <p>It can even be another Collapsible component. Check out the next section!</p>
-          </Collapsible>
-          <Collapsible trigger="Start here">
-                <p>This is the collapsible content. It can be any element or React component you like.</p>
-                <p>It can even be another Collapsible component. Check out the next section!</p>
-          </Collapsible>
+          {
+            roots
+          }
           <button onClick={this.closeModal}>close</button>
         </Modal>
       </div>

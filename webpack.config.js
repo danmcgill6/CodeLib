@@ -26,10 +26,15 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
             query: {
-                presets: ['es2016', 'react']
+                presets: ['es2016']
             }
         },
     ],
+},
+resolve: {
+    alias: {
+      react: path.resolve('./node_modules/react'),
+    }
 },
 devtool: '#eval-source-map',
 externals: ['pg', 'sqlite3', 'tedious', 'pg-hstore','jQuery'],

@@ -49012,7 +49012,8 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      folders: []
     };
 
     this.openModal = this.openModal.bind(this);
@@ -49023,7 +49024,7 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
     __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8080/api/rootFolder', { headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      } }).then(res => console.log(res));
+      } }).then(res => this.setState({ folders: res.data }));
   }
 
   openModal() {
@@ -49040,6 +49041,8 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
   }
 
   render() {
+    console.log('state', this.state);
+    const roots = this.state.folders.map(folder => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_collapsible___default.a, { trigger: folder.name }));
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { id: 'yourAppElement' },
@@ -49062,48 +49065,7 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
           null,
           'Choose a folder'
         ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_4_react_collapsible___default.a,
-          { trigger: 'Start here' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'This is the collapsible content. It can be any element or React component you like.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'It can even be another Collapsible component. Check out the next section!'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_4_react_collapsible___default.a,
-          { trigger: 'Start here' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'This is the collapsible content. It can be any element or React component you like.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'It can even be another Collapsible component. Check out the next section!'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_4_react_collapsible___default.a,
-          { trigger: 'Start here' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'This is the collapsible content. It can be any element or React component you like.'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'It can even be another Collapsible component. Check out the next section!'
-          )
-        ),
+        roots,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'button',
           { onClick: this.closeModal },
@@ -49232,37 +49194,6 @@ function registerValidSW(swUrl) {
 
 function checkValidServiceWorker(swUrl) {
   // Check if the service worker can be found. If it can't reload the page.
-  fetch(swUrl).then(response => {
-    // Ensure service worker exists, and that we really are getting a JS file.
-    if (response.status === 404 || response.headers.get('content-type').indexOf('javascript') === -1) {
-      // No service worker found. Probably a different app. Reload the page.
-      navigator.serviceWorker.ready.then(registration => {
-        registration.unregister().then(() => {
-          window.location.reload();
-        });
-      });
-    } else {
-      // Service worker found. Proceed as normal.
-      registerValidSW(swUrl);
-    }
-  }).catch(() => {
-    console.log('No internet connection found. App is running in offline mode.');
-  });
-}
-
-function unregister() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then(registration => {
-      registration.unregister();
-    });
-  }
-}
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/process/browser.js")))
-
-/***/ })
-
-/******/ });
-//# sourceMappingURL=bundle.js.mapck if the service worker can be found. If it can't reload the page.
   fetch(swUrl).then(response => {
     // Ensure service worker exists, and that we really are getting a JS file.
     if (response.status === 404 || response.headers.get('content-type').indexOf('javascript') === -1) {
