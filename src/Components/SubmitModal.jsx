@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import axios from 'axios'
 import Collapsible from 'react-collapsible';
+import register from '../registerServiceWorker';
 
 
 const customStyles = {
@@ -30,6 +32,13 @@ export default class SubmitModal extends React.Component {
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
+  componentDidMount(){
+      axios.get('http://localhost:8080/api/rootFolder',{ headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }})
+        .then(res => console.log(res))
+  }
 
   openModal() {
     this.setState({modalIsOpen: true});
@@ -37,7 +46,7 @@ export default class SubmitModal extends React.Component {
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
+  
   }
 
   closeModal() {
@@ -56,9 +65,9 @@ export default class SubmitModal extends React.Component {
           contentLabel="Example Modal"
         >
 
-          <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+          <h2>Choose a folder</h2>
        
-          <Collapsible trigger="Folder One">
+          <Collapsible trigger="Start here">
                 <p>This is the collapsible content. It can be any element or React component you like.</p>
                 <p>It can even be another Collapsible component. Check out the next section!</p>
           </Collapsible>

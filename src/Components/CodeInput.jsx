@@ -103,7 +103,7 @@ class CodeInput extends Component {
                 onChange={this.onChange}
                 onTab={this.onTab}
                 placeholder="Write code and annotations..."
-             
+                ref="editor"
                 spellCheck={true}
               />
             </div>

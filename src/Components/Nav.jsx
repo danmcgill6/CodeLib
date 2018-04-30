@@ -7,7 +7,7 @@ class Nav extends Component {
   render() {
     return (
       <nav>
-      <div class="nav-wrapper">
+      <div className="nav-wrapper">
       <Link to="/" className="brand-logo center">CodeLib</Link>
       <ul id="nav-mobile" className="left hide-on-med-and-down">
       <li>Your Library</li>
