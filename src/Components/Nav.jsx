@@ -6,7 +6,7 @@ import '../App.css';
 class Nav extends Component {
   render() {
     return (
-      <nav>
+      <nav className='navigation'>
       <div className="nav-wrapper">
       <Link to="/" className="brand-logo center">CodeLib</Link>
       <ul id="nav-mobile" className="left hide-on-med-and-down">
