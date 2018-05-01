@@ -1,26 +1,23 @@
+'use strict'
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios'
 import {Editor, EditorState,RichUtils,convertToRaw, ContentState, Modifier} from 'draft-js';
 import StyleButton from './StyleButton'
-import SubmitModal from './SubmitModal'
 
 class CodeInput extends Component {
     constructor(props) {
         super(props);
         this.state = {editorState: EditorState.createEmpty(), value: ''};
-
-        this.focus = () => this.refs.editor.focus();
-        this.onChange = (editorState) => {
-            this.setState({editorState});
-        }
-
+        this.myRef = React.createRef()
+        this.onChange = (editorState) =>  this.setState({editorState});
+        this.focus = () => this.myRef.current.focus();
         this.handleKeyCommand = (command) => this._handleKeyCommand(command);
         this.onTab = (e) => this._onTab(e);
         this.toggleBlockType = (type) => this._toggleBlockType(type);
         this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
         this.onSubmit = this.onSubmit.bind(this)
-        this.handlePastedText = this. handlePastedText.bind(this)
+        this.handlePastedText = this.handlePastedText.bind(this)
       }
 
       onSubmit(e){
@@ -95,6 +92,7 @@ class CodeInput extends Component {
             />
             <div className={className} onClick={this.focus}>
               <Editor
+                id="editor"
                 blockStyleFn={getBlockStyle}
                 customStyleMap={styleMap}
                 editorState={editorState}
@@ -102,13 +100,13 @@ class CodeInput extends Component {
                 handleKeyCommand={this.handleKeyCommand}
                 onChange={this.onChange}
                 onTab={this.onTab}
+                ref={this.myRef}
                 placeholder="Write code and annotations..."
-                ref="editor"
                 spellCheck={true}
               />
             </div>
             <button onClick={this.onSubmit}>Save code</button>
-            <SubmitModal />
+         <p>Hello this wont break</p>
           </div>
         );
       }

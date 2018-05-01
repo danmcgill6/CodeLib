@@ -13,7 +13,6 @@ module.exports = {
         tls: 'empty',
         dns: 'empty'
     }, 
-    // resolve: { alias: { 'react': path.resolve(__dirname, '../../node_modules', 'react') } },
      devtool: 'source-map',
     module: {
         loaders: [
@@ -26,25 +25,20 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
             query: {
-                presets: ['es2016']
+                presets: ['es2016', 'react']
             }
         },
     ],
 },
-resolve: {
-    alias: {
-      react: path.resolve('./node_modules/react'),
-    }
-},
-devtool: '#eval-source-map',
-externals: ['pg', 'sqlite3', 'tedious', 'pg-hstore','jQuery'],
+
+externals: ['pg', 'sqlite3', 'tedious', 'pg-hstore'],
 watch: true,
+resolve: {
+    extensions: ['.js', '.jsx'] // Looks for index.js first, then falls back to index.jsx
+ // extensions: ['.jsx', '.js']    Looks for index.jsx first, then falls back to index.js
+},
 plugins: [
     new webpack.NamedModulesPlugin(),
-    new webpack.ProvidePlugin({
-  $: 'jquery',
-  jQuery: 'jquery'
-})
 ]
 }
 
