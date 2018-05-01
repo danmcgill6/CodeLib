@@ -4,6 +4,7 @@ import '../App.css';
 import axios from 'axios'
 import {Editor, EditorState,RichUtils,convertToRaw, ContentState, Modifier} from 'draft-js';
 import StyleButton from './StyleButton'
+import SubmitModal from './SubmitModal'
 
 class CodeInput extends Component {
     constructor(props) {
@@ -106,7 +107,7 @@ class CodeInput extends Component {
               />
             </div>
             <button onClick={this.onSubmit}>Save code</button>
-         <p>Hello this wont break</p>
+            <SubmitModal />
           </div>
         );
       }
