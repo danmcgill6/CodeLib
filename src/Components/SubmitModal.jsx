@@ -36,6 +36,7 @@ export default class SubmitModal extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.onSubmit = this.onSubmit.bind(this)
   }
   componentDidMount(){
 
@@ -46,6 +47,15 @@ export default class SubmitModal extends React.Component {
         .then(res => this.setState({folders:res.data}))
   }
 
+  onSubmit(e){
+    let code = this.props.code
+    axios.post('http://localhost:8080/api/code',{ code , folderId: this.state.selectedFolder.id},{ headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+  }})
+    .then(res => console.log(res))
+}
+
   openModal() {this.setState({modalIsOpen: true});}
   afterOpenModal(){}
 
@@ -54,18 +64,17 @@ export default class SubmitModal extends React.Component {
   }
 
   renderFolderContent(e,folder,codeBlocks,folders){
-    this.setState({ folders, selectedFolder:folder })
+    folder.folders ? this.setState({ folders, selectedFolder:folder }) : this.setState({ selectedFolder:folder })
   }
 
   render() {
-    console.log(this.state.selectedFolder.name)
-   console.log(this.state)
     const folders = this.state.folders.map(folder => {
-     return  <li onClick={(e) => this.renderFolderContent(e,folder,folder.codeBlocks,folder.folders)} >{folder.name}</li>
-    })
+      return  <li onClick={(e) => this.renderFolderContent(e,folder,folder.codeBlocks,folder.folders)} >{folder.name}</li>
+    }) 
+    console.log(this.state.selectedFolder)
     return ( 
       <div id='yourAppElement'>
-        <button onClick={this.openModal}>Open Modal</button>
+        <button onClick={this.openModal}>Save Code</button>
          <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -80,6 +89,7 @@ export default class SubmitModal extends React.Component {
           }
         </ul>
         <button onClick={this.closeModal}>close</button>
+        <button onClick={this.onSubmit}>Save</button>
       </Modal> 
     </div> 
         

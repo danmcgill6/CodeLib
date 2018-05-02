@@ -48537,13 +48537,8 @@ class CodeInput extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     this.onTab = e => this._onTab(e);
     this.toggleBlockType = type => this._toggleBlockType(type);
     this.toggleInlineStyle = style => this._toggleInlineStyle(style);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.handlePastedText = this.handlePastedText.bind(this);
-  }
 
-  onSubmit(e) {
-    let code = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_draft_js__["convertToRaw"])(this.state.editorState.getCurrentContent());
-    __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('http://localhost:8080/api/code', { code }).then(res => console.log(res));
+    this.handlePastedText = this.handlePastedText.bind(this);
   }
 
   _handleKeyCommand(command) {
@@ -48618,12 +48613,7 @@ class CodeInput extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
           spellCheck: true
         })
       ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'button',
-        { onClick: this.onSubmit },
-        'Save code'
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__SubmitModal__["a" /* default */], null)
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__SubmitModal__["a" /* default */], { code: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_draft_js__["convertToRaw"])(this.state.editorState.getCurrentContent()) })
     );
   }
 }
@@ -48929,8 +48919,9 @@ const InlineStyleControls = props => {
 /***/ }),
 
 /***/ "./src/Components/SideNav.jsx":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__) {
 
+"use strict";
 
 
 /***/ }),
@@ -49022,6 +49013,7 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   componentDidMount() {
 
@@ -49029,6 +49021,14 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       } }).then(res => this.setState({ folders: res.data }));
+  }
+
+  onSubmit(e) {
+    let code = this.props.code;
+    __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('http://localhost:8080/api/code', { code, folderId: this.state.selectedFolder.id }, { headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      } }).then(res => console.log(res));
   }
 
   openModal() {
@@ -49041,12 +49041,10 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
   }
 
   renderFolderContent(e, folder, codeBlocks, folders) {
-    this.setState({ folders, selectedFolder: folder });
+    folder.folders ? this.setState({ folders, selectedFolder: folder }) : this.setState({ selectedFolder: folder });
   }
 
   render() {
-    console.log(this.state.selectedFolder.name);
-    console.log(this.state);
     const folders = this.state.folders.map(folder => {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'li',
@@ -49054,13 +49052,14 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
         folder.name
       );
     });
+    console.log(this.state.selectedFolder);
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { id: 'yourAppElement' },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'button',
         { onClick: this.openModal },
-        'Open Modal'
+        'Save Code'
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_2_react_modal___default.a,
@@ -49085,6 +49084,11 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
           'button',
           { onClick: this.closeModal },
           'close'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'button',
+          { onClick: this.onSubmit },
+          'Save'
         )
       )
     );

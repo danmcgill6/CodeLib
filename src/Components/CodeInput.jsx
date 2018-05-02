@@ -17,15 +17,10 @@ class CodeInput extends Component {
         this.onTab = (e) => this._onTab(e);
         this.toggleBlockType = (type) => this._toggleBlockType(type);
         this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
-        this.onSubmit = this.onSubmit.bind(this)
+     
         this.handlePastedText = this.handlePastedText.bind(this)
       }
 
-      onSubmit(e){
-          let code = convertToRaw(this.state.editorState.getCurrentContent())
-          axios.post('http://localhost:8080/api/code', { code })
-          .then(res => console.log(res))
-      }
 
       _handleKeyCommand(command) {
         const {editorState} = this.state;
@@ -106,8 +101,7 @@ class CodeInput extends Component {
                 spellCheck={true}
               />
             </div>
-            <button onClick={this.onSubmit}>Save code</button>
-            <SubmitModal />
+            <SubmitModal code={convertToRaw(this.state.editorState.getCurrentContent())}/>
           </div>
         );
       }
