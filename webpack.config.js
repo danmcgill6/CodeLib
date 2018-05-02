@@ -31,7 +31,7 @@ module.exports = {
     ],
 },
 
-externals: ['pg', 'sqlite3', 'tedious', 'pg-hstore'],
+externals: ['pg', 'sqlite3', 'tedious', 'pg-hstore','jQuery'],
 watch: true,
 resolve: {
     extensions: ['.js', '.jsx'] // Looks for index.js first, then falls back to index.jsx
