@@ -29,14 +29,16 @@ export default class SubmitModal extends React.Component {
 
     this.state = {
       modalIsOpen: false,
-      folders:[]
+      folders:[],
+      codeBlocks:[],
+      selectedFolder:{}
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
   componentDidMount(){
-    console.log(window)
+
       axios.get('http://localhost:8080/api/rootFolder',{ headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -51,9 +53,16 @@ export default class SubmitModal extends React.Component {
     this.setState({modalIsOpen: false});
   }
 
-  render() {
+  renderFolderContent(e,folder,codeBlocks,folders){
+    this.setState({ folders, selectedFolder:folder })
+  }
 
-    const roots = this.state.folders.map(folder =>  <Collapsible onClick={this.renderFolderContent}trigger={folder.name}></Collapsible>)
+  render() {
+    console.log(this.state.selectedFolder.name)
+   console.log(this.state)
+    const folders = this.state.folders.map(folder => {
+     return  <li onClick={(e) => this.renderFolderContent(e,folder,folder.codeBlocks,folder.folders)} >{folder.name}</li>
+    })
     return ( 
       <div id='yourAppElement'>
         <button onClick={this.openModal}>Open Modal</button>
@@ -65,14 +74,10 @@ export default class SubmitModal extends React.Component {
           contentLabel="Example Modal"
         >
       <h2>Where would you like to save this file</h2>
-      <a className='dropdown-trigger btn' data-target='dropdown1'>Drop Me!</a>
-       <ul id='dropdown1' className='dropdown-content'>
-             <li><a >one</a></li>
-             <li><a >two</a></li>
-             <li className="divider" tabindex="-1"></li>
-             <li><a >three</a></li>
-             <li><a ><i className="material-icons">view_module</i>four</a></li>
-             <li><a ><i className="material-icons">cloud</i>five</a></li>
+        <ul>
+          {
+            folders
+          }
         </ul>
         <button onClick={this.closeModal}>close</button>
       </Modal> 

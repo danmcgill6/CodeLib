@@ -49015,14 +49015,16 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
 
     this.state = {
       modalIsOpen: false,
-      folders: []
+      folders: [],
+      codeBlocks: [],
+      selectedFolder: {}
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
   componentDidMount() {
-    console.log(window);
+
     __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8080/api/rootFolder', { headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -49038,9 +49040,20 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
     this.setState({ modalIsOpen: false });
   }
 
-  render() {
+  renderFolderContent(e, folder, codeBlocks, folders) {
+    this.setState({ folders, selectedFolder: folder });
+  }
 
-    const roots = this.state.folders.map(folder => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_collapsible___default.a, { onClick: this.renderFolderContent, trigger: folder.name }));
+  render() {
+    console.log(this.state.selectedFolder.name);
+    console.log(this.state);
+    const folders = this.state.folders.map(folder => {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'li',
+        { onClick: e => this.renderFolderContent(e, folder, folder.codeBlocks, folder.folders) },
+        folder.name
+      );
+    });
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { id: 'yourAppElement' },
@@ -49064,69 +49077,9 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
           'Where would you like to save this file'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'a',
-          { className: 'dropdown-trigger btn', 'data-target': 'dropdown1' },
-          'Drop Me!'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'ul',
-          { id: 'dropdown1', className: 'dropdown-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              null,
-              'one'
-            )
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              null,
-              'two'
-            )
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', { className: 'divider', tabindex: '-1' }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              null,
-              'three'
-            )
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              null,
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'i',
-                { className: 'material-icons' },
-                'view_module'
-              ),
-              'four'
-            )
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              null,
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'i',
-                { className: 'material-icons' },
-                'cloud'
-              ),
-              'five'
-            )
-          )
+          null,
+          folders
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'button',
