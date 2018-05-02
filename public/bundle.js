@@ -48919,9 +48919,8 @@ const InlineStyleControls = props => {
 /***/ }),
 
 /***/ "./src/Components/SideNav.jsx":
-/***/ (function(module, __webpack_exports__) {
+/***/ (function(module, exports) {
 
-"use strict";
 
 
 /***/ }),
@@ -49070,10 +49069,20 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
           style: customStyles,
           contentLabel: 'Example Modal'
         },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h4', null),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'h2',
           null,
           'Where would you like to save this file'
+        ),
+        this.state.selectedFolder.name ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h4',
+          null,
+          this.state.selectedFolder.name
+        ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h4',
+          null,
+          'Folders'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'ul',

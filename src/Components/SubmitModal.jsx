@@ -82,7 +82,9 @@ export default class SubmitModal extends React.Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
+        <h4></h4>
       <h2>Where would you like to save this file</h2>
+      {this.state.selectedFolder.name ? <h4>{this.state.selectedFolder.name}</h4>: <h4>Folders</h4>}
         <ul>
           {
             folders
