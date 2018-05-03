@@ -51,9 +51,10 @@ export default class SubmitModal extends React.Component {
   }
 
   onSubmit(e){
+    let title = this.props.title
     let folderId = this.state.selectedFolder.id
     let code = this.props.code
-    axios.post('http://localhost:8080/api/code',{ code , folderId},{ headers: {
+    axios.post('http://localhost:8080/api/code',{ code , folderId, title},{ headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
   }})
@@ -102,7 +103,7 @@ export default class SubmitModal extends React.Component {
     return ( 
       <div id='yourAppElement'>
         <button onClick={this.openModal}>Save Code</button>
-         <Modal
+        <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
@@ -110,7 +111,7 @@ export default class SubmitModal extends React.Component {
           contentLabel="Example Modal"
         >
         <h4></h4>
-      <h2>Where would you like to save this file</h2>
+      <h2>Where would you like to save this {this.props.title}</h2>
       {this.state.selectedFolder.name ? <div> <h1 onClick={this.renderPreviousFolder}>---</h1> <h4>{this.state.selectedFolder.name}</h4></div>: <h4>Folders</h4>}
         <ul>
           {folders}

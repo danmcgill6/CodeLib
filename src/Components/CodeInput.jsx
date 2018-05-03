@@ -5,6 +5,7 @@ import axios from 'axios'
 import {Editor, EditorState,RichUtils,convertToRaw, ContentState, Modifier} from 'draft-js';
 import StyleButton from './StyleButton'
 import SubmitModal from './SubmitModal'
+import TitleModal from './TitleModal'
 
 class CodeInput extends Component {
     constructor(props) {
@@ -101,7 +102,7 @@ class CodeInput extends Component {
                 spellCheck={true}
               />
             </div>
-            <SubmitModal code={convertToRaw(this.state.editorState.getCurrentContent())}/>
+            <TitleModal code={convertToRaw(this.state.editorState.getCurrentContent())}/>
           </div>
         );
       }

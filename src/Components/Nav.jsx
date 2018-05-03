@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import TitleModal from './TitleModal'
 
 import '../App.css';
 
 class Nav extends Component {
+  constructor(){
+    super()
+  }
+
   render() {
     return (
       <nav className='navigation'>
