@@ -31,12 +31,14 @@ export default class SubmitModal extends React.Component {
       modalIsOpen: false,
       folders:[],
       codeBlocks:[],
-      selectedFolder:{}
+      selectedFolder:{},
+      folderStack:[]
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.onSubmit = this.onSubmit.bind(this)
+    this.renderPreviousFolder = this.renderPreviousFolder.bind(this)
   }
   componentDidMount(){
 
@@ -44,7 +46,11 @@ export default class SubmitModal extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     }})
-        .then(res => this.setState({folders:res.data}))
+        .then(res => {
+          let root = {}
+          root.folders = res.data
+          this.setState({folders:res.data, folderStack: this.state.folderStack.concat(root)})
+        })
   }
 
   onSubmit(e){
@@ -64,10 +70,26 @@ export default class SubmitModal extends React.Component {
   }
 
   renderFolderContent(e,folder,codeBlocks,folders){
-    folder.folders ? this.setState({ folders, selectedFolder:folder }) : this.setState({ selectedFolder:folder })
+    let newFolderStack = this.state.folderStack.concat(folder)
+    let newFolders
+    folder.folders ? newFolders = folder.folders : newFolders = []
+    folder.folders || folder.codeBlocks ? this.setState({ 
+      folderStack: newFolderStack,
+      folders: newFolders,
+      selectedFolder: folder }) : 
+      this.setState({ selectedFolder: folder })
+  }
+  renderPreviousFolder(){
+    let previousFolder = this.state.folderStack[this.state.folderStack.length -2 ]
+    this.state.folderStack && this.setState({ 
+      selectedFolder: previousFolder,
+      folderStack: this.state.folderStack.slice(0,this.state.folderStack.length - 1),
+      folders: previousFolder.folders
+    }) 
   }
 
   render() {
+    console.log('state', this.state)
     const folders = this.state.folders.map(folder => {
       return  <li onClick={(e) => this.renderFolderContent(e,folder,folder.codeBlocks,folder.folders)} >{folder.name}</li>
     }) 
@@ -84,7 +106,7 @@ export default class SubmitModal extends React.Component {
         >
         <h4></h4>
       <h2>Where would you like to save this file</h2>
-      {this.state.selectedFolder.name ? <h4>{this.state.selectedFolder.name}</h4>: <h4>Folders</h4>}
+      {this.state.selectedFolder.name ? <div> <h1 onClick={this.renderPreviousFolder}>---</h1> <h4>{this.state.selectedFolder.name}</h4></div>: <h4>Folders</h4>}
         <ul>
           {
             folders

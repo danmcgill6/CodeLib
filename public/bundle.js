@@ -49007,19 +49007,25 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
       modalIsOpen: false,
       folders: [],
       codeBlocks: [],
-      selectedFolder: {}
+      selectedFolder: {},
+      folderStack: []
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.renderPreviousFolder = this.renderPreviousFolder.bind(this);
   }
   componentDidMount() {
 
     __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('http://localhost:8080/api/rootFolder', { headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      } }).then(res => this.setState({ folders: res.data }));
+      } }).then(res => {
+      let root = {};
+      root.folders = res.data;
+      this.setState({ folders: res.data, folderStack: this.state.folderStack.concat(root) });
+    });
   }
 
   onSubmit(e) {
@@ -49040,10 +49046,25 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
   }
 
   renderFolderContent(e, folder, codeBlocks, folders) {
-    folder.folders ? this.setState({ folders, selectedFolder: folder }) : this.setState({ selectedFolder: folder });
+    let newFolderStack = this.state.folderStack.concat(folder);
+    let newFolders;
+    folder.folders ? newFolders = folder.folders : newFolders = [];
+    folder.folders || folder.codeBlocks ? this.setState({
+      folderStack: newFolderStack,
+      folders: newFolders,
+      selectedFolder: folder }) : this.setState({ selectedFolder: folder });
+  }
+  renderPreviousFolder() {
+    let previousFolder = this.state.folderStack[this.state.folderStack.length - 2];
+    this.state.folderStack && this.setState({
+      selectedFolder: previousFolder,
+      folderStack: this.state.folderStack.slice(0, this.state.folderStack.length - 1),
+      folders: previousFolder.folders
+    });
   }
 
   render() {
+    console.log('state', this.state);
     const folders = this.state.folders.map(folder => {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'li',
@@ -49076,9 +49097,20 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
           'Where would you like to save this file'
         ),
         this.state.selectedFolder.name ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
+          'div',
           null,
-          this.state.selectedFolder.name
+          ' ',
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'h1',
+            { onClick: this.renderPreviousFolder },
+            '---'
+          ),
+          ' ',
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'h4',
+            null,
+            this.state.selectedFolder.name
+          )
         ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'h4',
           null,
