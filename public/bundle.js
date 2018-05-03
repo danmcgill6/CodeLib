@@ -49082,15 +49082,31 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
     const folders = this.state.folders.map(folder => {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'li',
-        { onClick: e => this.renderFolderContent(e, folder, folder.codeBlocks, folder.folders) },
-        folder.name
+        { className: 'collection-item', onClick: e => this.renderFolderContent(e, folder, folder.codeBlocks, folder.folders) },
+        ' ',
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          null,
+          folder.name,
+          '  ',
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'a',
+            { href: '#!', 'class': 'secondary-content' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'i',
+              { 'class': 'material-icons' },
+              'send'
+            )
+          )
+        )
       );
     });
+
     const codeBlocks = this.state.codeBlocks.map(codeBlock => {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'li',
-        null,
-        codeBlock.code
+        { className: 'collection-item' },
+        codeBlock.title
       );
     });
     console.log(this.state.selectedFolder);
@@ -49099,7 +49115,7 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
       { id: 'yourAppElement' },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'button',
-        { onClick: this.openModal },
+        { className: 'waves-effect waves-light btn', onClick: this.openModal },
         'Save Code'
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -49115,43 +49131,40 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'h2',
           null,
-          'Where would you like to save this ',
+          'Where would you like to save ',
           this.props.title
-        ),
-        this.state.selectedFolder.name ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          null,
-          ' ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'h1',
-            { onClick: this.renderPreviousFolder },
-            '---'
-          ),
-          ' ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'h4',
-            null,
-            this.state.selectedFolder.name
-          )
-        ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h4',
-          null,
-          'Folders'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'ul',
-          null,
+          { className: 'collection with-header' },
+          this.state.selectedFolder.name ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            { className: 'collection-header' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'h4',
+              null,
+              this.state.selectedFolder.name
+            )
+          ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            { className: 'collection-header' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'h4',
+              null,
+              'Folders'
+            )
+          ),
           folders,
           codeBlocks
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'button',
-          { onClick: this.closeModal },
+          { className: 'waves-effect waves-light btn', onClick: this.closeModal },
           'close'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'button',
-          { onClick: this.onSubmit },
+          { className: 'waves-effect waves-light btn', onClick: this.onSubmit },
           'Save'
         )
       )
@@ -49234,7 +49247,7 @@ class TitleModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
       { id: 'yourAppElement' },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'button',
-        { onClick: this.openModal },
+        { className: 'waves-effect waves-light btn', onClick: this.openModal },
         'hbhlhl'
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

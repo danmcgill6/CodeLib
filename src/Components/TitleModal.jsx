@@ -49,7 +49,7 @@ export default class TitleModal extends React.Component {
 
     return ( 
       <div id='yourAppElement'>
-              <button onClick={this.openModal}>hbhlhl</button>
+              <button className="waves-effect waves-light btn" onClick={this.openModal}>hbhlhl</button>
 
         <Modal
           isOpen={this.state.modalIsOpen}
