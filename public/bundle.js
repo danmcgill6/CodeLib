@@ -49047,12 +49047,16 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
 
   renderFolderContent(e, folder, codeBlocks, folders) {
     let newFolderStack = this.state.folderStack.concat(folder);
+    let newCodeBlocks = folder.codeBlocks;
+    console.log('blocks', newCodeBlocks);
     let newFolders;
     folder.folders ? newFolders = folder.folders : newFolders = [];
     folder.folders || folder.codeBlocks ? this.setState({
       folderStack: newFolderStack,
       folders: newFolders,
-      selectedFolder: folder }) : this.setState({ selectedFolder: folder });
+      codeBlocks: newCodeBlocks,
+      selectedFolder: folder
+    }) : this.setState({ selectedFolder: folder });
   }
   renderPreviousFolder() {
     let previousFolder = this.state.folderStack[this.state.folderStack.length - 2];
@@ -49070,6 +49074,13 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
         'li',
         { onClick: e => this.renderFolderContent(e, folder, folder.codeBlocks, folder.folders) },
         folder.name
+      );
+    });
+    const codeBlocks = this.state.codeBlocks.map(codeBlock => {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'li',
+        null,
+        codeBlock.code
       );
     });
     console.log(this.state.selectedFolder);
@@ -49119,7 +49130,8 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'ul',
           null,
-          folders
+          folders,
+          codeBlocks
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'button',

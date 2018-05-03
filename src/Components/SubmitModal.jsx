@@ -6,9 +6,6 @@ import Collapsible from 'react-collapsible';
 import register from '../registerServiceWorker';
 
 
-
-
-
 const customStyles = {
   content : {
     top                   : '50%',
@@ -71,12 +68,16 @@ export default class SubmitModal extends React.Component {
 
   renderFolderContent(e,folder,codeBlocks,folders){
     let newFolderStack = this.state.folderStack.concat(folder)
+    let newCodeBlocks = folder.codeBlocks
+    console.log('blocks',newCodeBlocks)
     let newFolders
     folder.folders ? newFolders = folder.folders : newFolders = []
     folder.folders || folder.codeBlocks ? this.setState({ 
       folderStack: newFolderStack,
       folders: newFolders,
-      selectedFolder: folder }) : 
+      codeBlocks: newCodeBlocks,
+      selectedFolder: folder 
+    }) : 
       this.setState({ selectedFolder: folder })
   }
   renderPreviousFolder(){
@@ -93,6 +94,9 @@ export default class SubmitModal extends React.Component {
     const folders = this.state.folders.map(folder => {
       return  <li onClick={(e) => this.renderFolderContent(e,folder,folder.codeBlocks,folder.folders)} >{folder.name}</li>
     }) 
+    const codeBlocks = this.state.codeBlocks.map(codeBlock => {
+      return <li>{codeBlock.code}</li>
+    })
     console.log(this.state.selectedFolder)
     return ( 
       <div id='yourAppElement'>
@@ -108,9 +112,8 @@ export default class SubmitModal extends React.Component {
       <h2>Where would you like to save this file</h2>
       {this.state.selectedFolder.name ? <div> <h1 onClick={this.renderPreviousFolder}>---</h1> <h4>{this.state.selectedFolder.name}</h4></div>: <h4>Folders</h4>}
         <ul>
-          {
-            folders
-          }
+          {folders}
+          {codeBlocks}
         </ul>
         <button onClick={this.closeModal}>close</button>
         <button onClick={this.onSubmit}>Save</button>
