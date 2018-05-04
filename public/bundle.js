@@ -48927,8 +48927,9 @@ const InlineStyleControls = props => {
 /***/ }),
 
 /***/ "./src/Components/SideNav.jsx":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__) {
 
+"use strict";
 
 
 /***/ }),
@@ -48994,6 +48995,10 @@ class StyleButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
 
 
 const customStyles = {
+  overlay: {
+    zIndex: 100,
+    backgroundColor: "rgba(255, 255, 255, 0.75)"
+  },
   content: {
     top: '50%',
     left: '50%',
@@ -49052,6 +49057,7 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
   afterOpenModal() {}
 
   closeModal() {
+
     this.setState({ modalIsOpen: false });
   }
 
@@ -49124,8 +49130,7 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
           isOpen: this.state.modalIsOpen,
           onAfterOpen: this.afterOpenModal,
           onRequestClose: this.closeModal,
-          style: customStyles,
-          contentLabel: 'Example Modal'
+          style: customStyles
         },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h4', null),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -49201,6 +49206,10 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
 
 
 const customStyles = {
+  overlay: {
+    zIndex: 100,
+    backgroundColor: "rgba(255, 255, 255, 0.75)"
+  },
   content: {
     top: '50%',
     left: '50%',
@@ -49244,54 +49253,57 @@ class TitleModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
-      { id: 'yourAppElement' },
+      { id: 'yourAppElement', className: 'modalContainer' },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'button',
-        { className: 'waves-effect waves-light btn', onClick: this.openModal },
-        'hbhlhl'
+        { className: 'btn waves-effect waves-light saveButton', onClick: this.openModal },
+        'Save CodeBlock'
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_2_react_modal___default.a,
-        {
-          isOpen: this.state.modalIsOpen,
-          onAfterOpen: this.afterOpenModal,
-          onRequestClose: this.closeModal,
-          style: customStyles,
-          contentLabel: 'Example Modal'
-        },
+        'div',
+        { className: 'saveButton' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h2',
-          null,
-          'Enter Title of CodeBlock'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          { className: 'row' },
+          __WEBPACK_IMPORTED_MODULE_2_react_modal___default.a,
+          {
+            isOpen: this.state.modalIsOpen,
+            onAfterOpen: this.afterOpenModal,
+            onRequestClose: this.closeModal,
+            style: customStyles
+          },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'form',
-            { className: 'col s12' },
+            'h2',
+            null,
+            'Please give your CodeBlock a title'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'row' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'row' },
+              'form',
+              { className: 'col s12' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'input-field col s6' },
+                { className: 'row' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'i',
-                  { className: 'material-icons prefix' },
-                  'mode_edit'
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { onChange: e => this.titleChange(e.target.value), id: 'icon_prefix2', className: 'materialize-textarea' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'label',
-                  { 'for': 'icon_prefix2' },
-                  'Title'
+                  'div',
+                  { className: 'input-field col s6' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'i',
+                    { className: 'material-icons prefix' },
+                    'mode_edit'
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { onChange: e => this.titleChange(e.target.value), id: 'icon_prefix2', className: 'materialize-textarea' }),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'label',
+                    { 'for': 'icon_prefix2' },
+                    'Title'
+                  )
                 )
               )
             )
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__SubmitModal__["a" /* default */], { title: this.state.title, code: this.props.code })
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__SubmitModal__["a" /* default */], { title: this.state.title, code: this.props.code })
+        )
       )
     );
   }

@@ -8,13 +8,17 @@ import SubmitModal from './SubmitModal'
 
 
 const customStyles = {
+    overlay:{
+    zIndex:100,
+    backgroundColor: "rgba(255, 255, 255, 0.75)"
+     },
   content : {
     top                   : '50%',
     left                  : '50%',
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
   }
 };
 
@@ -48,17 +52,16 @@ export default class TitleModal extends React.Component {
   render() {
 
     return ( 
-      <div id='yourAppElement'>
-              <button className="waves-effect waves-light btn" onClick={this.openModal}>hbhlhl</button>
-
+      <div id='yourAppElement' className ='modalContainer'>
+              <button className="btn waves-effect waves-light saveButton" onClick={this.openModal}>Save CodeBlock</button>
+    <div className="saveButton">
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
-          contentLabel="Example Modal"
         >
-      <h2>Enter Title of CodeBlock</h2>
+      <h2>Please give your CodeBlock a title</h2>
       <div className="row">
     <form className="col s12">
       <div className="row">
@@ -72,6 +75,7 @@ export default class TitleModal extends React.Component {
   </div>
         <SubmitModal title={this.state.title} code={this.props.code}/>
       </Modal> 
+      </div>
     </div> 
 
 );

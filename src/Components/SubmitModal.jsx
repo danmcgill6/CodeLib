@@ -7,6 +7,10 @@ import register from '../registerServiceWorker';
 
 
 const customStyles = {
+  overlay:{
+     zIndex:100,
+    backgroundColor: "rgba(255, 255, 255, 0.75)"
+ },
   content : {
     top                   : '50%',
     left                  : '50%',
@@ -65,6 +69,7 @@ export default class SubmitModal extends React.Component {
   afterOpenModal(){}
 
   closeModal() {
+
     this.setState({modalIsOpen: false});
   }
 
@@ -109,7 +114,6 @@ export default class SubmitModal extends React.Component {
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
-          contentLabel="Example Modal"
         >
         <h4></h4>
       <h2>Where would you like to save {this.props.title}</h2>
