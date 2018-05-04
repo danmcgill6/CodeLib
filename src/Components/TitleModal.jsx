@@ -63,16 +63,13 @@ export default class TitleModal extends React.Component {
         >
       <h2>Please give your CodeBlock a title</h2>
       <div className="row">
-    <form className="col s12">
-      <div className="row">
-        <div className="input-field col s6">
-          <i className="material-icons prefix">mode_edit</i>
-          <textarea onChange={(e) => this.titleChange(e.target.value)}id="icon_prefix2" className="materialize-textarea"></textarea>
-          <label for="icon_prefix2">Title</label>
-        </div>
-      </div>
-    </form>
+    <div className="input-field col s6">
+    <i className="material-icons prefix">mode_edit</i>
+      <input onChange={(e) => this.titleChange(e.target.value)}  id="first_name2" type="text" className="validate" />
+      <label className="active" for="first_name2">Title</label>
+    </div>
   </div>
+    
         <SubmitModal title={this.state.title} code={this.props.code}/>
       </Modal> 
       </div>
