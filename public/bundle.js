@@ -48927,9 +48927,8 @@ const InlineStyleControls = props => {
 /***/ }),
 
 /***/ "./src/Components/SideNav.jsx":
-/***/ (function(module, __webpack_exports__) {
+/***/ (function(module, exports) {
 
-"use strict";
 
 
 /***/ }),
@@ -49043,9 +49042,11 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
 
   onSubmit(e) {
     let title = this.props.title;
-    let folderId = this.state.selectedFolder.id;
+    let folderId = null;
+    let rootFolderId = null;
+    this.state.folderStack.length === 2 ? rootFolderId = this.state.selectedFolder.id : folderId = this.state.selectedFolder.id;
     let code = this.props.code;
-    __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('http://localhost:8080/api/code', { code, folderId, title }, { headers: {
+    __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('http://localhost:8080/api/code', { code, folderId, title, rootFolderId }, { headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       } }).then(res => console.log(res));
@@ -49452,4 +49453,4 @@ function unregister() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.js.map
+//# sourceMappingURL=bundle.js.mapceMappingURL=bundle.js.map

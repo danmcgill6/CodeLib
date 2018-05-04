@@ -56,9 +56,11 @@ export default class SubmitModal extends React.Component {
 
   onSubmit(e){
     let title = this.props.title
-    let folderId = this.state.selectedFolder.id
+    let folderId = null
+    let rootFolderId = null
+    this.state.folderStack.length === 2 ? rootFolderId = this.state.selectedFolder.id : folderId = this.state.selectedFolder.id
     let code = this.props.code
-    axios.post('http://localhost:8080/api/code',{ code , folderId, title},{ headers: {
+    axios.post('http://localhost:8080/api/code',{ code , folderId, title, rootFolderId},{ headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
   }})
