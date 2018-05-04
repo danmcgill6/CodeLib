@@ -4,16 +4,8 @@ pre {
     overflow: auto;
 }
 
-.Modal {
-  position: absolute;
-border: none;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
-  transform : translate(-50%, -50%);
-  background-color: white;
+.backButton {
+  margin-top: 15px;
 }
 
 .Overlay {

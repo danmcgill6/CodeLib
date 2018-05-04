@@ -97,7 +97,7 @@ export default class SubmitModal extends React.Component {
   }
 
   render() {
-    console.log('state', this.state)
+    console.log(this.state)
     const folders = this.state.folders.map(folder => {
       return  <li className="collection-item" onClick={(e) => this.renderFolderContent(e,folder,folder.codeBlocks,folder.folders)} > <div>{folder.name}  <a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
     }) 
@@ -105,7 +105,7 @@ export default class SubmitModal extends React.Component {
     const codeBlocks = this.state.codeBlocks.map(codeBlock => {
       return <li className="collection-item" >{codeBlock.title}</li>
     })
-    console.log(this.state.selectedFolder)
+
     return ( 
       <div id='yourAppElement'>
         <button className="waves-effect waves-light btn" onClick={this.openModal}>Save Code</button>
@@ -115,11 +115,11 @@ export default class SubmitModal extends React.Component {
           onRequestClose={this.closeModal}
           style={customStyles}
         >
-        <h4></h4>
       <h2>Where would you like to save {this.props.title}</h2>
       <ul className="collection with-header">
-      {this.state.selectedFolder.name ?  
-         <li className="collection-header"><h4>{this.state.selectedFolder.name}</h4></li>: 
+      {this.state.folderStack.length !== 1 && <a href="#" onClick={this.renderPreviousFolder}><i className="medium material-icons left backButton">arrow_back</i></a>}
+        {this.state.selectedFolder.name ?  
+        <li className="collection-header"><h4>{this.state.selectedFolder.name}</h4></li>: 
          <li className="collection-header"><h4>Folders</h4></li>}
           {folders}
           {codeBlocks}
