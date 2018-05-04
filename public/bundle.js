@@ -48927,8 +48927,9 @@ const InlineStyleControls = props => {
 /***/ }),
 
 /***/ "./src/Components/SideNav.jsx":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__) {
 
+"use strict";
 
 
 /***/ }),
@@ -49062,10 +49063,10 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
 
   renderFolderContent(e, folder, codeBlocks, folders) {
     let newFolderStack = this.state.folderStack.concat(folder);
-    let newCodeBlocks = folder.codeBlocks;
-    console.log('blocks', newCodeBlocks);
+    let newCodeBlocks;
     let newFolders;
     folder.folders ? newFolders = folder.folders : newFolders = [];
+    folder.codeBlocks ? newCodeBlocks = folder.codeBlocks : newCodeBlocks = [];
     folder.folders || folder.codeBlocks ? this.setState({
       folderStack: newFolderStack,
       folders: newFolders,
@@ -49075,10 +49076,15 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
   }
   renderPreviousFolder() {
     let previousFolder = this.state.folderStack[this.state.folderStack.length - 2];
+    let newCodeBlocks;
+    let newFolders;
+    previousFolder.folders ? newFolders = previousFolder.folders : newFolders = [];
+    previousFolder.codeBlocks ? newCodeBlocks = previousFolder.codeBlocks : newCodeBlocks = [];
     this.state.folderStack && this.setState({
       selectedFolder: previousFolder,
       folderStack: this.state.folderStack.slice(0, this.state.folderStack.length - 1),
-      folders: previousFolder.folders
+      folders: previousFolder.folders,
+      codeBlocks: newCodeBlocks
     });
   }
 

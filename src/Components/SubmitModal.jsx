@@ -75,10 +75,10 @@ export default class SubmitModal extends React.Component {
 
   renderFolderContent(e,folder,codeBlocks,folders){
     let newFolderStack = this.state.folderStack.concat(folder)
-    let newCodeBlocks = folder.codeBlocks
-    console.log('blocks',newCodeBlocks)
+    let newCodeBlocks 
     let newFolders
     folder.folders ? newFolders = folder.folders : newFolders = []
+    folder.codeBlocks ? newCodeBlocks = folder.codeBlocks : newCodeBlocks = []
     folder.folders || folder.codeBlocks ? this.setState({ 
       folderStack: newFolderStack,
       folders: newFolders,
@@ -89,10 +89,15 @@ export default class SubmitModal extends React.Component {
   }
   renderPreviousFolder(){
     let previousFolder = this.state.folderStack[this.state.folderStack.length -2 ]
+    let newCodeBlocks 
+    let newFolders
+    previousFolder.folders ? newFolders = previousFolder.folders : newFolders = []
+    previousFolder.codeBlocks ? newCodeBlocks = previousFolder.codeBlocks : newCodeBlocks = []
     this.state.folderStack && this.setState({ 
       selectedFolder: previousFolder,
       folderStack: this.state.folderStack.slice(0,this.state.folderStack.length - 1),
-      folders: previousFolder.folders
+      folders: previousFolder.folders,
+      codeBlocks : newCodeBlocks
     }) 
   }
 
