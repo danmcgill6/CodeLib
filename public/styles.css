@@ -8,6 +8,10 @@ pre {
   margin-top: 15px;
 }
 
+.folderContainer{
+  margin-top: 50px;
+}
+
 .Overlay {
   zIndex:100;
   background-color: rgba(255, 255, 255, 0.75);
