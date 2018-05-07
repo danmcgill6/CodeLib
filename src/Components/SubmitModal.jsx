@@ -43,11 +43,12 @@ export default class SubmitModal extends React.Component {
   }
   componentDidMount(){
 
-      axios.get('http://localhost:8080/api/rootFolder',{ headers: {
+      axios.get('http://localhost:8080/api/folders',{ headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     }})
         .then(res => {
+          console.log(res)
           let root = {}
           root.folders = res.data
           this.setState({folders:res.data, folderStack: this.state.folderStack.concat(root)})
@@ -56,11 +57,9 @@ export default class SubmitModal extends React.Component {
 
   onSubmit(e){
     let title = this.props.title
-    let folderId = null
-    let rootFolderId = null
-    this.state.folderStack.length === 2 ? rootFolderId = this.state.selectedFolder.id : folderId = this.state.selectedFolder.id
     let code = this.props.code
-    axios.post('http://localhost:8080/api/code',{ code , folderId, title, rootFolderId},{ headers: {
+    let folderId = this.state.selectedFolder.id
+    axios.post('http://localhost:8080/api/code',{ code , folderId, title},{ headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
   }})
@@ -79,15 +78,15 @@ export default class SubmitModal extends React.Component {
     let newFolderStack = this.state.folderStack.concat(folder)
     let newCodeBlocks 
     let newFolders
+    console.log(folder)
     folder.folders ? newFolders = folder.folders : newFolders = []
     folder.codeBlocks ? newCodeBlocks = folder.codeBlocks : newCodeBlocks = []
-    folder.folders || folder.codeBlocks ? this.setState({ 
+    this.setState({ 
       folderStack: newFolderStack,
       folders: newFolders,
       codeBlocks: newCodeBlocks,
       selectedFolder: folder 
-    }) : 
-      this.setState({ selectedFolder: folder })
+    }) 
   }
   renderPreviousFolder(){
     let previousFolder = this.state.folderStack[this.state.folderStack.length -2 ]
