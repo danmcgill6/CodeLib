@@ -7,12 +7,22 @@ export default class Library extends React.Component {
   constructor(props) {
       super(props)
       this.state = {
-          folders:[]
+          slectedFolderd:{},
+          folders:[],
+          codeBlocks:[]
         }
   }
   componentDidMount(){
-    axios.get('http://localhost:8080/api/folders')
+      if(this.props.match.params.id){    
+          console.log('yeah dog')         
+        axios.get(`http://localhost:8080/api/folders/${this.props.match.params.id}`)
+         .then(res => this.setState({folders: res.data.folders, codeBlocks:res.data.codeBlocks}))
+      }else{
+        axios.get('http://localhost:8080/api/folders')
         .then(res => this.setState({folders:res.data}))
+      }
+       
+
   }
 
   render() {

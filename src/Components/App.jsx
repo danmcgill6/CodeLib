@@ -18,7 +18,8 @@ class App extends Component {
           <div className="col s8">
             <Route exact path="/codeInput" component={CodeInput} />
             <Route path="/render" component={RenderCode} />
-            <Route path="/library" component={Library} />
+            <Route exact path="/library" component={Library} />
+            <Route path="/library/:id" component={Library} />
           </div>
        </div>
 
