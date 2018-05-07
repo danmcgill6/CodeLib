@@ -15,7 +15,7 @@ class Nav extends Component {
       <div className="nav-wrapper">
       <Link to="/" className="brand-logo center">CodeLib</Link>
       <ul id="nav-mobile" className="left hide-on-med-and-down">
-      <li>Your Library</li>
+      <li><Link to="/library">Your Library</Link></li>
       </ul>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li><Link to="/codeInput">Create Code Block</Link></li>

@@ -48461,11 +48461,11 @@ module.exports = g;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Nav__ = __webpack_require__("./src/Components/Nav.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CodeInput__ = __webpack_require__("./src/Components/CodeInput.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RenderCode__ = __webpack_require__("./src/Components/RenderCode.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__SideNav__ = __webpack_require__("./src/Components/SideNav.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__SideNav___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__SideNav__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Library__ = __webpack_require__("./src/Components/Library.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__App_css__ = __webpack_require__("./src/App.css");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__App_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__App_css__);
+
 
 
 
@@ -48491,7 +48491,8 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             'div',
             { className: 'col s8' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_router_dom__["b" /* Route */], { exact: true, path: '/codeInput', component: __WEBPACK_IMPORTED_MODULE_2__CodeInput__["a" /* default */] }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_router_dom__["b" /* Route */], { path: '/render', component: __WEBPACK_IMPORTED_MODULE_3__RenderCode__["a" /* default */] })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_router_dom__["b" /* Route */], { path: '/render', component: __WEBPACK_IMPORTED_MODULE_3__RenderCode__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_router_dom__["b" /* Route */], { path: '/library', component: __WEBPACK_IMPORTED_MODULE_4__Library__["a" /* default */] })
           )
         )
       )
@@ -48680,6 +48681,43 @@ const InlineStyleControls = props => {
 
 /***/ }),
 
+/***/ "./src/Components/Library.jsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__("./node_modules/react-dom/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__("./node_modules/axios/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+
+
+
+
+class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+    constructor() {
+        super();
+    }
+
+    render() {
+
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'h1',
+                null,
+                'Your Library'
+            )
+        );
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Library;
+
+
+/***/ }),
+
 /***/ "./src/Components/Nav.jsx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -48719,7 +48757,11 @@ class Nav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',
             null,
-            'Your Library'
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Link */],
+              { to: '/library' },
+              'Your Library'
+            )
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -48923,13 +48965,6 @@ const InlineStyleControls = props => {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (RenderCode);
-
-/***/ }),
-
-/***/ "./src/Components/SideNav.jsx":
-/***/ (function(module, exports) {
-
-
 
 /***/ }),
 
@@ -49453,4 +49488,4 @@ function unregister() {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.js.mapceMappingURL=bundle.js.map
+//# sourceMappingURL=bundle.js.map
