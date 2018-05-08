@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import TitleModal from './TitleModal'
-import { logout } from '../Redux/auth';
+import { logout} from '../Redux/auth';
 
 
 
@@ -13,6 +13,7 @@ class Nav extends Component {
   }
 
   onLogOut(){
+    console.log('clicked')
     this.props.logout()
   }
   render() {
@@ -22,11 +23,11 @@ class Nav extends Component {
       <div className="nav-wrapper">
       <Link to="/" className="brand-logo center">CodeLib</Link>
       <ul id="nav-mobile" className="left hide-on-med-and-down">
-      {this.props.currentUser.name ? <li><li><Link to="/library">Your Library</Link></li></li> : <li><Link to="/codeInput">SignUp</Link></li>}
+      {this.props.currentUser.email ? <li><li><Link to="/library">Your Library</Link></li></li> : <li><Link to="/codeInput">SignUp</Link></li>}
       </ul>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
-          {this.props.currentUser.name && <li><Link to="/codeInput">Create Code Block</Link></li>}
-          {this.props.currentUser.name ? <li onClick={this.onLogOut}><Link to="/codeInput">Logout</Link></li> : <li><Link to="/codeInput">Login</Link></li>}
+          {this.props.currentUser.email && <li><Link to="/codeInput">Create Code Block</Link></li>}
+          {this.props.currentUser.email ? <li onClick={this.onLogOut}><Link to="/">Logout</Link></li> : <li><Link to="/login">Login</Link></li>}
       </ul>
     </div>
   </nav>

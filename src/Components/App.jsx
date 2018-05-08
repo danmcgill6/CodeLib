@@ -3,6 +3,7 @@ import Nav from './Nav'
 import CodeInput from './CodeInput'
 import RenderCode from './RenderCode'
 import Library from './Library'
+import Login from './Login'
 import Home from './Home'
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
@@ -17,6 +18,7 @@ class App extends Component {
           <div className="col s8">
             <Route exact path="/" component={Home} />
             <Route exact path="/codeInput" component={CodeInput} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/render" component={RenderCode} />
             <Route exact path="/library" component={Library} />
             <Route path="/library/:id" component={Library} />

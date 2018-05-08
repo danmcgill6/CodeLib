@@ -50617,8 +50617,10 @@ module.exports = function(originalModule) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CodeInput__ = __webpack_require__("./src/Components/CodeInput.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RenderCode__ = __webpack_require__("./src/Components/RenderCode.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Library__ = __webpack_require__("./src/Components/Library.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Home__ = __webpack_require__("./src/Components/Home.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Login__ = __webpack_require__("./src/Components/Login.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Home__ = __webpack_require__("./src/Components/Home.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
+
 
 
 
@@ -50630,7 +50632,7 @@ module.exports = function(originalModule) {
 class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   render() {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      __WEBPACK_IMPORTED_MODULE_6_react_router_dom__["a" /* BrowserRouter */],
+      __WEBPACK_IMPORTED_MODULE_7_react_router_dom__["a" /* BrowserRouter */],
       null,
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
@@ -50642,11 +50644,12 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'col s8' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_react_router_dom__["b" /* Route */], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_5__Home__["a" /* default */] }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_react_router_dom__["b" /* Route */], { exact: true, path: '/codeInput', component: __WEBPACK_IMPORTED_MODULE_2__CodeInput__["a" /* default */] }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_react_router_dom__["b" /* Route */], { exact: true, path: '/render', component: __WEBPACK_IMPORTED_MODULE_3__RenderCode__["a" /* default */] }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_react_router_dom__["b" /* Route */], { exact: true, path: '/library', component: __WEBPACK_IMPORTED_MODULE_4__Library__["a" /* default */] }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_react_router_dom__["b" /* Route */], { path: '/library/:id', component: __WEBPACK_IMPORTED_MODULE_4__Library__["a" /* default */] })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_6__Home__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { exact: true, path: '/codeInput', component: __WEBPACK_IMPORTED_MODULE_2__CodeInput__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { exact: true, path: '/login', component: __WEBPACK_IMPORTED_MODULE_5__Login__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { exact: true, path: '/render', component: __WEBPACK_IMPORTED_MODULE_3__RenderCode__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { exact: true, path: '/library', component: __WEBPACK_IMPORTED_MODULE_4__Library__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { path: '/library/:id', component: __WEBPACK_IMPORTED_MODULE_4__Library__["a" /* default */] })
           )
         )
       )
@@ -51056,6 +51059,99 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 /***/ }),
 
+/***/ "./src/Components/Login.jsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Redux_auth__ = __webpack_require__("./src/Redux/auth.js");
+
+
+
+
+/* -----------------    COMPONENT     ------------------ */
+
+class Login extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+
+  constructor(props) {
+    super(props);
+    this.onLoginSubmit = this.onLoginSubmit.bind(this);
+  }
+
+  render() {
+    const { message } = this.props;
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'div',
+      { className: 'row' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'form',
+        { className: 'col s8', onSubmit: this.onLoginSubmit },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'row' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'input-field col s12' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+              placeholder: 'Email',
+              id: 'email',
+              type: 'email',
+              'class': 'validate',
+              name: 'email',
+              required: true
+            })
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'row' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'input-field col s12' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+              placeholder: 'Password',
+              id: 'password',
+              type: 'password',
+              'class': 'validate',
+              name: 'password',
+              required: true })
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'row' }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'button',
+          { type: 'submit', className: 'btn btn-block btn-primary' },
+          message
+        )
+      )
+    );
+  }
+
+  onLoginSubmit(event) {
+    event.preventDefault();
+    this.props.login({
+      email: event.target.email.value,
+      password: event.target.password.value
+    });
+  }
+}
+
+/* -----------------    CONTAINER     ------------------ */
+
+const mapState = () => ({ message: 'Sign up' });
+
+const mapDispatch = (dispatch, ownProps) => ({
+  login: credentials => {
+    dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__Redux_auth__["a" /* login */])(credentials, ownProps.history));
+  }
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapState, mapDispatch)(Login));
+
+/***/ }),
+
 /***/ "./src/Components/Nav.jsx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -51079,6 +51175,7 @@ class Nav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   }
 
   onLogOut() {
+    console.log('clicked');
     this.props.logout();
   }
   render() {
@@ -51097,7 +51194,7 @@ class Nav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'ul',
           { id: 'nav-mobile', className: 'left hide-on-med-and-down' },
-          this.props.currentUser.name ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          this.props.currentUser.email ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -51122,7 +51219,7 @@ class Nav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'ul',
           { id: 'nav-mobile', className: 'right hide-on-med-and-down' },
-          this.props.currentUser.name && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          this.props.currentUser.email && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -51131,12 +51228,12 @@ class Nav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
               'Create Code Block'
             )
           ),
-          this.props.currentUser.name ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          this.props.currentUser.email ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',
             { onClick: this.onLogOut },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Link */],
-              { to: '/codeInput' },
+              { to: '/' },
               'Logout'
             )
           ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -51144,7 +51241,7 @@ class Nav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Link */],
-              { to: '/codeInput' },
+              { to: '/login' },
               'Login'
             )
           )
@@ -51157,7 +51254,7 @@ class Nav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 const mapState = state => ({ currentUser: state.currentUser });
 const mapDispatch = (dispatch, ownProps) => ({
   logout: history => {
-    dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__Redux_auth__["b" /* logout */])(ownProps.history));
+    dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__Redux_auth__["c" /* logout */])(ownProps.history));
   }
 });
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])(mapState, mapDispatch)(Nav));
@@ -51458,7 +51555,7 @@ const mapState = () => ({ message: 'Sign up' });
 
 const mapDispatch = (dispatch, ownProps) => ({
   signup: credentials => {
-    dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__Redux_auth__["a" /* signup */])(credentials, ownProps.history));
+    dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__Redux_auth__["b" /* signup */])(credentials, ownProps.history));
   }
 });
 
@@ -51856,7 +51953,7 @@ class TitleModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["c"] = reducer;
+/* harmony export (immutable) */ __webpack_exports__["d"] = reducer;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__("./node_modules/axios/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
@@ -51877,7 +51974,6 @@ function reducer(currentUser = {}, action) {
   switch (action.type) {
 
     case SET_CURRENT_USER:
-      console.log('hellloooo');
       return action.user;
 
     case REMOVE_CURRENT_USER:
@@ -51891,21 +51987,21 @@ function reducer(currentUser = {}, action) {
 /* ------------       THUNK CREATORS     ------------------ */
 
 const login = (credentials, history) => dispatch => {
-  __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('http://localhost:8080/auth/login', credentials).then(res => setUserAndRedirect(res.data, history, dispatch)).catch(err => console.error(`Logging in with ${credentials.email} and ${credentials.password} was unsuccesful`, err));
+  __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/auth/login', credentials).then(res => setUserAndRedirect(res.data, history, dispatch)).catch(err => console.error(`Logging in with ${credentials.email} and ${credentials.password} was unsuccesful`, err));
 };
-/* unused harmony export login */
+/* harmony export (immutable) */ __webpack_exports__["a"] = login;
 
 
 const logout = history => dispatch => {
   __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/auth/logout').then(res => dispatch(removeCurrentUser(res.data))).catch(err => console.error('Logging out was unsuccesful', err));
 };
-/* harmony export (immutable) */ __webpack_exports__["b"] = logout;
+/* harmony export (immutable) */ __webpack_exports__["c"] = logout;
 
 
 const signup = (credentials, history) => dispatch => {
   __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/auth/signup', credentials).then(res => setUserAndRedirect(res.data, history, dispatch)).catch(err => console.error(`Signing up with ${credentials.email} and ${credentials.password} was unsuccesful`, err));
 };
-/* harmony export (immutable) */ __webpack_exports__["a"] = signup;
+/* harmony export (immutable) */ __webpack_exports__["b"] = signup;
 
 
 const fetchCurrentUser = () => dispatch => {
@@ -51934,7 +52030,7 @@ function setUserAndRedirect(user, history, dispatch) {
 
 
 
-/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["combineReducers"])({ currentUser: __WEBPACK_IMPORTED_MODULE_1__auth__["c" /* default */] }));
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["combineReducers"])({ currentUser: __WEBPACK_IMPORTED_MODULE_1__auth__["d" /* default */] }));
 
 /***/ }),
 

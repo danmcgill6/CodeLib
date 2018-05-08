@@ -16,7 +16,6 @@ export default function reducer (currentUser = {}, action) {
   switch (action.type) {
 
     case SET_CURRENT_USER:
-      console.log('hellloooo')
       return action.user;
 
     case REMOVE_CURRENT_USER:
@@ -30,7 +29,7 @@ export default function reducer (currentUser = {}, action) {
 /* ------------       THUNK CREATORS     ------------------ */
 
 export const login = (credentials, history) => dispatch => {
-  axios.put('http://localhost:8080/auth/login', credentials)
+  axios.post('http://localhost:8080/auth/login', credentials)
     .then(res => setUserAndRedirect(res.data, history, dispatch))
     .catch(err => console.error(`Logging in with ${credentials.email} and ${credentials.password} was unsuccesful`, err));
 };
@@ -38,7 +37,6 @@ export const login = (credentials, history) => dispatch => {
 export const logout = history => dispatch => {
   axios.post('http://localhost:8080/auth/logout')
     .then(res => dispatch(removeCurrentUser(res.data)))
-
     .catch(err => console.error('Logging out was unsuccesful', err));
 };
 
