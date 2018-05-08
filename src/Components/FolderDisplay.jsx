@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
  const FolderDisplay = ({folders}) => {
+     console.log(folders)
 
      let displayedFolders = folders.map(folder => 
         <div className="col s12 m4">
@@ -12,7 +14,7 @@ import axios from 'axios'
             <p>Created:{folder.createdAt}</p>
           </div>
           <div className="card-action">
-            <a href="#">View</a>
+          <Link to={`/library/${folder.id}`}>View</Link>
           </div>
         </div>
       </div>

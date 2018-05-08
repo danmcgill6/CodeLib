@@ -4,7 +4,7 @@ import CodeInput from './CodeInput'
 import RenderCode from './RenderCode'
 
 import Library from './Library'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import '../App.css';
 
@@ -16,10 +16,12 @@ class App extends Component {
       <Nav />
         <div id="main" className="container">
           <div className="col s8">
-            <Route exact path="/codeInput" component={CodeInput} />
-            <Route path="/render" component={RenderCode} />
+
+            <Route exact path="/" component={CodeInput} />
+            <Route exact path="/render" component={RenderCode} />
             <Route exact path="/library" component={Library} />
             <Route path="/library/:id" component={Library} />
+      
           </div>
        </div>
 
