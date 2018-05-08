@@ -36,9 +36,9 @@ export const login = (credentials, history) => dispatch => {
 };
 
 export const logout = history => dispatch => {
-  axios.delete('http://localhost:8080/auth/logout')
+  axios.post('http://localhost:8080/auth/logout')
     .then(res => dispatch(removeCurrentUser(res.data)))
-    .then(() => history.push('/'))
+
     .catch(err => console.error('Logging out was unsuccesful', err));
 };
 
