@@ -46,15 +46,17 @@ console.log('library state', this.state)
         {
             this.state.selectedFolder && <h1>{this.state.selectedFolder.name}</h1> 
         }
+      
         {
             this.state.codeBlocks.length > 1 && <h3>Code Blocks</h3>
         }
             <CodeBlockDisplay codeBlocks={this.state.codeBlocks} />
         {
-            this.state.folders && <h3>Folders</h3>
+            this.state.codeBlocks.length > 1 && <h3>Folders</h3>
         }
             <FolderDisplay folders={this.state.folders} />
         </div>
+    
 
     );
 }

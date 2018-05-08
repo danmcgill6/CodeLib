@@ -1,6 +1,5 @@
 'use strict'
 import React, { Component } from 'react';
-import '../App.css';
 import axios from 'axios'
 import {Editor, EditorState,RichUtils,convertToRaw, ContentState, Modifier} from 'draft-js';
 import StyleButton from './StyleButton'
