@@ -30,26 +30,26 @@ export default function reducer (currentUser = {}, action) {
 /* ------------       THUNK CREATORS     ------------------ */
 
 export const login = (credentials, history) => dispatch => {
-  axios.put('/auth/local/login', credentials)
+  axios.put('http://localhost:8080/auth/login', credentials)
     .then(res => setUserAndRedirect(res.data, history, dispatch))
     .catch(err => console.error(`Logging in with ${credentials.email} and ${credentials.password} was unsuccesful`, err));
 };
 
 export const logout = history => dispatch => {
-  axios.delete('/auth/local/logout')
+  axios.delete('http://localhost:8080/auth/logout')
     .then(res => dispatch(removeCurrentUser(res.data)))
     .then(() => history.push('/'))
     .catch(err => console.error('Logging out was unsuccesful', err));
 };
 
 export const signup = (credentials,history) => dispatch => {
-  axios.post('/auth/local/signup', credentials)
+  axios.post('http://localhost:8080/auth/signup', credentials)
     .then(res => setUserAndRedirect(res.data, history, dispatch))
     .catch(err => console.error(`Signing up with ${credentials.email} and ${credentials.password} was unsuccesful`, err));
 };
 
 export const fetchCurrentUser = () => dispatch => {
-  axios.get('/auth/local/me')
+  axios.get('http://localhost:8080/auth/me')
     .then(res =>{
       dispatch(setCurrentUser(res.data))
     })
