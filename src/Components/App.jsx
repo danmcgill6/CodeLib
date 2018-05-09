@@ -5,10 +5,16 @@ import RenderCode from './RenderCode'
 import Library from './Library'
 import Login from './Login'
 import Home from './Home'
+import { connect } from 'react-redux';
+import { persistUser } from '../Redux/auth';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 
 class App extends Component {
+//  componentDidMount(){
+//    let user = JSON.parse(localStorage.getItem('user'))
+//    this.props.persistUser(user)
+//  }
   render() {
     return (
       <Router>
@@ -32,5 +38,12 @@ class App extends Component {
     );
   }
 }
+const mapDispatch = (dispatch, ownProps) => (
+  {
+    persistUser: credentials => {
+      dispatch(persistUser(credentials, ownProps));
+    }
+  })
 
-export default App;
+export default connect(null , mapDispatch)(App);
+

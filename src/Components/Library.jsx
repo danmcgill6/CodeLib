@@ -37,7 +37,7 @@ export class Library extends React.Component {
            id: res.data.id
           }))
     }else{
-      axios.get(`http://localhost:8080/api/folders/user/${this.props.currentUser.id}`)
+       axios.get(`http://localhost:8080/api/folders/user/${this.props.currentUser.id}`)
       .then(res => this.setState({folders:res.data}))
     }
   }
