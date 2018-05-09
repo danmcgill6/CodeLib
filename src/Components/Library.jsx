@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 import axios from 'axios'
 import FolderDisplay from './FolderDisplay'
 import CodeBlockDisplay from './CodeBlockDisplay'
+import { connect } from 'react-redux';
 
-export default class Library extends React.Component {
+
+
+export class Library extends React.Component {
   constructor(props) {
       super(props)
       this.state = {
@@ -34,7 +37,7 @@ export default class Library extends React.Component {
            id: res.data.id
           }))
     }else{
-      axios.get('http://localhost:8080/api/folders/')
+      axios.get(`http://localhost:8080/api/folders/user/${this.props.currentUser.id}`)
       .then(res => this.setState({folders:res.data}))
     }
   }
@@ -61,3 +64,7 @@ console.log('library state', this.state)
     );
 }
 }
+
+const mapState = (state) => ({ currentUser: state.currentUser });
+
+export default connect(mapState, null )(Library);
