@@ -19,6 +19,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/codeInput" component={CodeInput} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/render/:id" component={RenderCode} />
             <Route exact path="/render" component={RenderCode} />
             <Route exact path="/library" component={Library} />
             <Route path="/library/:id" component={Library} />

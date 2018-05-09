@@ -50647,6 +50647,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_6__Home__["a" /* default */] }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { exact: true, path: '/codeInput', component: __WEBPACK_IMPORTED_MODULE_2__CodeInput__["a" /* default */] }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { exact: true, path: '/login', component: __WEBPACK_IMPORTED_MODULE_5__Login__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { exact: true, path: '/render/:id', component: __WEBPACK_IMPORTED_MODULE_3__RenderCode__["a" /* default */] }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { exact: true, path: '/render', component: __WEBPACK_IMPORTED_MODULE_3__RenderCode__["a" /* default */] }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { exact: true, path: '/library', component: __WEBPACK_IMPORTED_MODULE_4__Library__["a" /* default */] }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["b" /* Route */], { path: '/library/:id', component: __WEBPACK_IMPORTED_MODULE_4__Library__["a" /* default */] })
@@ -50669,13 +50670,16 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__("./node_modules/react-dom/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
+
 
 
 
 const CodeBlockDisplay = ({ codeBlocks }) => {
+
     const displayedCodeBlocks = codeBlocks.map(codeBlock => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'a',
-        { href: '#!', className: 'collection-item' },
+        __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Link */],
+        { to: `/render/${codeBlock.id}`, className: 'collection-item' },
         codeBlock.title
     ));
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -50956,7 +50960,7 @@ class Home extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             null,
-            this.props.user ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            this.props.currentUser.email ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'h1',
                 null,
                 'Welcome Back!'
@@ -50965,7 +50969,7 @@ class Home extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                 null,
                 'Welcome to CodeLib !'
             ),
-            this.props.user ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            this.props.currentUser.email ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'h1',
                 null,
                 'Recent Code Blocks'
@@ -51302,8 +51306,9 @@ class RenderCode extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   }
 
   componentDidMount() {
-    __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(`http://localhost:8080/api/code/${11}`).then(res => {
-      const newContentState = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_draft_js__["convertFromRaw"])(JSON.parse(res.data.code));
+    __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(`http://localhost:8080/api/code/${this.props.match.params.id}`).then(res => {
+      console.log(res.data);
+      const newContentState = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_draft_js__["convertFromRaw"])(res.data.code);
       const editorState = __WEBPACK_IMPORTED_MODULE_2_draft_js__["EditorState"].push(this.state.editorState, newContentState);
       this.setState({ editorState });
     });
@@ -51338,6 +51343,7 @@ class RenderCode extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   }
 
   render() {
+    console.log(this.props);
     const { editorState } = this.state;
 
     // If the user changes block type before entering any text, we can

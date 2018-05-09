@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom'
+
 
 
  const CodeBlockDisplay = ({codeBlocks}) => {
+
      const displayedCodeBlocks = codeBlocks.map(codeBlock => 
-        <a href="#!" className="collection-item">{codeBlock.title}</a>
+        <Link to={`/render/${codeBlock.id}`} className="collection-item">{codeBlock.title}</Link>
     )
     return ( 
         <div className="row">

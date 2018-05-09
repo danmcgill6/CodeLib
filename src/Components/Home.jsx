@@ -17,8 +17,8 @@ class Home extends Component {
   render() {
     return (
       <div>
-         {this.props.user ? <h1>Welcome Back!</h1> : <h1>Welcome to CodeLib !</h1>} 
-         {this.props.user ? <h1>Recent Code Blocks</h1> : <SignUp />} 
+         {this.props.currentUser.email ? <h1>Welcome Back!</h1> : <h1>Welcome to CodeLib !</h1>} 
+         {this.props.currentUser.email ? <h1>Recent Code Blocks</h1> : <SignUp />} 
       </div>
     );
   }

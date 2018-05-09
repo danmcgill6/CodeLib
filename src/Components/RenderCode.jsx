@@ -22,9 +22,10 @@ class RenderCode extends Component {
       }
 
       componentDidMount(){
-          axios.get(`http://localhost:8080/api/code/${11}`)
+          axios.get(`http://localhost:8080/api/code/${this.props.match.params.id}`)
           .then(res =>{
-            const newContentState = convertFromRaw(JSON.parse(res.data.code))
+            console.log(res.data)
+            const newContentState = convertFromRaw(res.data.code)
              const editorState = EditorState.push(this.state.editorState, newContentState)
              this.setState({editorState})
           })
@@ -70,6 +71,7 @@ class RenderCode extends Component {
       }
 
       render() {
+        console.log(this.props)
         const {editorState} = this.state;
 
         // If the user changes block type before entering any text, we can
