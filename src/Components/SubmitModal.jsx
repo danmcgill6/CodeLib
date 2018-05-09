@@ -4,6 +4,8 @@ import Modal from 'react-modal';
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
 import register from '../registerServiceWorker';
+import { connect } from 'react-redux';
+
 
 
 const customStyles = {
@@ -24,7 +26,7 @@ const customStyles = {
 // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement(document.getElementById('yourAppElement'))
 
-export default class SubmitModal extends React.Component {
+export class SubmitModal extends React.Component {
   constructor() {
     super();
 
@@ -43,7 +45,7 @@ export default class SubmitModal extends React.Component {
   }
   componentDidMount(){
 
-      axios.get('http://localhost:8080/api/folders',{ headers: {
+      axios.get(`http://localhost:8080/api/folders/user/${this.props.currentUser.id}`,{ headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     }})
@@ -59,7 +61,7 @@ export default class SubmitModal extends React.Component {
     let title = this.props.title
     let code = this.props.code
     let folderId = this.state.selectedFolder.id
-    axios.post('http://localhost:8080/api/code',{ code , folderId, title},{ headers: {
+    axios.post(`http://localhost:8080/api/code/${this.props.currentUser.id}`,{ code , folderId, title},{ headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
   }})
@@ -103,7 +105,7 @@ export default class SubmitModal extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.props)
     const folders = this.state.folders.map(folder => {
       return  <li className="collection-item" onClick={(e) => this.renderFolderContent(e,folder,folder.codeBlocks,folder.folders)} > <div>{folder.name}  <a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
     }) 
@@ -138,3 +140,7 @@ export default class SubmitModal extends React.Component {
     );
   }
 }
+
+const mapState = (state) => ({ currentUser: state.currentUser });
+
+export default connect(mapState, null )(SubmitModal);
