@@ -14,8 +14,8 @@ class Signup extends React.Component {
   render() {
     const { message } = this.props;
     return (
-        <div className="row">
-    <form className="col s8" onSubmit={this.onSignupSubmit}>
+    <div className="row">
+    <form className="col s8  offset-s2" onSubmit={this.onSignupSubmit}>
       <div className="row">
         <div className="input-field col s6">
           <input
