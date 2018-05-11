@@ -51563,6 +51563,105 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
+/***/ "./src/Components/AddFolder.jsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__("./node_modules/react-dom/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__("./node_modules/axios/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_modal__ = __webpack_require__("./node_modules/react-modal/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_modal__);
+
+
+
+
+
+
+const customStyles = {
+  overlay: {
+    zIndex: 100,
+    backgroundColor: "rgba(255, 255, 255, 0.75)"
+  },
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  }
+};
+
+class AddFolder extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  constructor() {
+    super();
+    this.state = {
+      modalIsOpen: false
+
+    };
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+  afterOpenModal() {}
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
+
+  onSubmit(e) {
+    let title = this.props.title;
+    let code = this.props.code;
+    let folderId = this.state.selectedFolder.id;
+    __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post(`http://localhost:8080/api/code/${this.props.currentUser.id}`, { code, folderId, title }, { headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      } }).then(res => console.log(res));
+  }
+  render() {
+
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'div',
+      { id: 'yourAppElement' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'button',
+        { className: 'btn-floating btn-large waves-effect waves-light green', onClick: this.openModal },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'i',
+          { 'class': 'material-icons' },
+          'add'
+        )
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_4_react_modal___default.a,
+        {
+          isOpen: this.state.modalIsOpen,
+          onAfterOpen: this.afterOpenModal,
+          onRequestClose: this.closeModal,
+          style: customStyles
+        },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h2',
+          null,
+          'Input Folder name'
+        )
+      )
+    );
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = AddFolder;
+
+
+/***/ }),
+
 /***/ "./src/Components/App.jsx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -51964,6 +52063,8 @@ const mapState = state => ({ currentUser: state.currentUser });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FolderDisplay__ = __webpack_require__("./src/Components/FolderDisplay.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CodeBlockDisplay__ = __webpack_require__("./src/Components/CodeBlockDisplay.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__AddFolder__ = __webpack_require__("./src/Components/AddFolder.jsx");
+
 
 
 
@@ -52023,17 +52124,43 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                 'div',
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'h3',
-                    null,
-                    'Code Blocks'
+                    'div',
+                    { className: 'subHeaderContainer' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'subTitleContainer' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'h3',
+                            null,
+                            'Code Blocks'
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'addButtonContainer' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__AddFolder__["a" /* default */], null)
+                    )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__CodeBlockDisplay__["a" /* default */], { codeBlocks: this.state.codeBlocks })
             ),
             this.state.codeBlocks.length > 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h3',
-                null,
-                'Folders'
+                'div',
+                { className: 'subHeaderContainer' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'subTitleContainer' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'h3',
+                        null,
+                        'Folders'
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'addButtonContainer' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__AddFolder__["a" /* default */], null)
+                )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FolderDisplay__["a" /* default */], { folders: this.state.folders })
         );
@@ -52652,7 +52779,6 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
     this.renderPreviousFolder = this.renderPreviousFolder.bind(this);
   }
   componentDidMount() {
-
     __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(`http://localhost:8080/api/folders/user/${this.props.currentUser.id}`, { headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'

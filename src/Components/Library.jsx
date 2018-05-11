@@ -4,6 +4,7 @@ import axios from 'axios'
 import FolderDisplay from './FolderDisplay'
 import CodeBlockDisplay from './CodeBlockDisplay'
 import { connect } from 'react-redux';
+import AddFolder from './AddFolder'
 
 
 
@@ -24,6 +25,8 @@ export class Library extends React.Component {
    componentDidMount(){
        this.fetchData()
    }
+
+   
  
   fetchData(){
       console.log(this.props)
@@ -53,13 +56,29 @@ console.log('library state', this.state)
         {
             this.state.codeBlocks.length > 1 && 
             <div>
+            <div className="subHeaderContainer">
+             <div className="subTitleContainer">
                 <h3>Code Blocks</h3>
+            </div>
+            <div className="addButtonContainer">
+                <AddFolder />
+            </div>
+            </div>
                 <br/>
                 <CodeBlockDisplay codeBlocks={this.state.codeBlocks} />
             </div>
+           
         }
         {
-            this.state.codeBlocks.length > 1 && <h3>Folders</h3>
+            this.state.codeBlocks.length > 1 && 
+            <div className="subHeaderContainer">
+                <div className="subTitleContainer">
+                    <h3>Folders</h3>
+                </div>
+                <div className="addButtonContainer">
+                     <AddFolder />
+                </div>
+            </div>
         }
             <FolderDisplay folders={this.state.folders} />
         </div>

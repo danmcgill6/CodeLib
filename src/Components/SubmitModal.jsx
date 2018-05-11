@@ -44,7 +44,6 @@ export class SubmitModal extends React.Component {
     this.renderPreviousFolder = this.renderPreviousFolder.bind(this)
   }
   componentDidMount(){
-
       axios.get(`http://localhost:8080/api/folders/user/${this.props.currentUser.id}`,{ headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
