@@ -47,13 +47,17 @@ console.log('library state', this.state)
     return ( 
         <div className="folderContainer">
         {
-            this.state.selectedFolder && <h1>{this.state.selectedFolder.name}</h1> 
+            this.state.selectedFolder.name ? <h1>{this.state.selectedFolder.name}</h1> : <h1>Your library</h1> 
         }
-      
+        <hr/>
         {
-            this.state.codeBlocks.length > 1 && <h3>Code Blocks</h3>
+            this.state.codeBlocks.length > 1 && 
+            <div>
+                <h3>Code Blocks</h3>
+                <br/>
+                <CodeBlockDisplay codeBlocks={this.state.codeBlocks} />
+            </div>
         }
-            <CodeBlockDisplay codeBlocks={this.state.codeBlocks} />
         {
             this.state.codeBlocks.length > 1 && <h3>Folders</h3>
         }
