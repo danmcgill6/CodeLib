@@ -6,7 +6,7 @@ import StyleButton from './StyleButton'
 class RenderCode extends Component {
     constructor(props) {
         super(props);
-        this.state = {editorState: EditorState.createEmpty(), value: ''};
+        this.state = {editorState: EditorState.createEmpty(), value: '', codeBlock: {}};
 
         this.focus = () => this.refs.editor.focus();
         this.onChange = (editorState) => {
@@ -27,7 +27,7 @@ class RenderCode extends Component {
             console.log(res.data)
             const newContentState = convertFromRaw(res.data.code)
              const editorState = EditorState.push(this.state.editorState, newContentState)
-             this.setState({editorState})
+             this.setState({editorState , codeBlock: res.data})
           })
       }
 
@@ -71,7 +71,7 @@ class RenderCode extends Component {
       }
 
       render() {
-        console.log(this.props)
+        console.log('render state',this.state)
         const {editorState} = this.state;
 
         // If the user changes block type before entering any text, we can
@@ -86,6 +86,8 @@ class RenderCode extends Component {
         }
 
         return (
+          <div>
+          {this.state.codeBlock.title && <h1>{this.state.codeBlock.title}</h1> }
           <div className="RichEditor-root">
             <BlockStyleControls
               editorState={editorState}
@@ -109,6 +111,7 @@ class RenderCode extends Component {
               />
             </div>
             <button onClick={this.onSubmit}>Save code</button>
+          </div>
           </div>
         );
       }

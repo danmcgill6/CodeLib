@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import FolderDisplay from './FolderDisplay'
 import CodeBlockDisplay from './CodeBlockDisplay'
 import { connect } from 'react-redux';
@@ -67,7 +68,7 @@ console.log('library state', this.state)
                 <h3>Code Blocks</h3>
             </div>
             <div className="addButtonContainer">
-                <AddFolder />
+            <button className="btn-floating btn-large waves-effect waves-light green"> <Link to="/codeInput"><i class="material-icons">add</i></Link> </button>
             </div>
             </div>
                 <br/>

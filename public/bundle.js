@@ -51638,10 +51638,8 @@ class AddFolder extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
       case 'rootFolder':
         this.postRootFolder();
         break;
-
       default:
         console.log('not found');
-
     }
   }
 
@@ -52080,10 +52078,12 @@ const mapState = state => ({ currentUser: state.currentUser });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__("./node_modules/axios/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FolderDisplay__ = __webpack_require__("./src/Components/FolderDisplay.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CodeBlockDisplay__ = __webpack_require__("./src/Components/CodeBlockDisplay.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__AddFolder__ = __webpack_require__("./src/Components/AddFolder.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FolderDisplay__ = __webpack_require__("./src/Components/FolderDisplay.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CodeBlockDisplay__ = __webpack_require__("./src/Components/CodeBlockDisplay.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__AddFolder__ = __webpack_require__("./src/Components/AddFolder.jsx");
+
 
 
 
@@ -52149,7 +52149,7 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'addButtonContainer' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__AddFolder__["a" /* default */], { isRoot: true, type: 'rootFolder', currentUser: this.props.currentUser })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__AddFolder__["a" /* default */], { isRoot: true, type: 'rootFolder', currentUser: this.props.currentUser })
                 )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
@@ -52171,11 +52171,25 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'addButtonContainer' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__AddFolder__["a" /* default */], null)
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'button',
+                            { className: 'btn-floating btn-large waves-effect waves-light green' },
+                            ' ',
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["c" /* Link */],
+                                { to: '/codeInput' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'i',
+                                    { 'class': 'material-icons' },
+                                    'add'
+                                )
+                            ),
+                            ' '
+                        )
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__CodeBlockDisplay__["a" /* default */], { codeBlocks: this.state.codeBlocks })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__CodeBlockDisplay__["a" /* default */], { codeBlocks: this.state.codeBlocks })
             ),
             this.state.codeBlocks.length > 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
@@ -52192,10 +52206,10 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'addButtonContainer' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__AddFolder__["a" /* default */], null)
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__AddFolder__["a" /* default */], null)
                 )
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FolderDisplay__["a" /* default */], { folders: this.state.folders })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__FolderDisplay__["a" /* default */], { folders: this.state.folders })
         );
     }
 }
@@ -52204,7 +52218,7 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 const mapState = state => ({ currentUser: state.currentUser });
 
-/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_react_redux__["b" /* connect */])(mapState, null)(Library));
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_react_redux__["b" /* connect */])(mapState, null)(Library));
 
 /***/ }),
 
@@ -52429,7 +52443,7 @@ const mapDispatch = (dispatch, ownProps) => ({
 class RenderCode extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
-    this.state = { editorState: __WEBPACK_IMPORTED_MODULE_2_draft_js__["EditorState"].createEmpty(), value: '' };
+    this.state = { editorState: __WEBPACK_IMPORTED_MODULE_2_draft_js__["EditorState"].createEmpty(), value: '', codeBlock: {} };
 
     this.focus = () => this.refs.editor.focus();
     this.onChange = editorState => {
@@ -52449,7 +52463,7 @@ class RenderCode extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
       console.log(res.data);
       const newContentState = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_draft_js__["convertFromRaw"])(res.data.code);
       const editorState = __WEBPACK_IMPORTED_MODULE_2_draft_js__["EditorState"].push(this.state.editorState, newContentState);
-      this.setState({ editorState });
+      this.setState({ editorState, codeBlock: res.data });
     });
   }
 
@@ -52482,7 +52496,7 @@ class RenderCode extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   }
 
   render() {
-    console.log(this.props);
+    console.log('render state', this.state);
     const { editorState } = this.state;
 
     // If the user changes block type before entering any text, we can
@@ -52498,34 +52512,43 @@ class RenderCode extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
-      { className: 'RichEditor-root' },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(BlockStyleControls, {
-        editorState: editorState,
-        onToggle: this.toggleBlockType
-      }),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(InlineStyleControls, {
-        editorState: editorState,
-        onToggle: this.toggleInlineStyle
-      }),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: className, onClick: this.focus },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_draft_js__["Editor"], {
-          blockStyleFn: getBlockStyle,
-          customStyleMap: styleMap,
-          editorState: editorState,
-          handleKeyCommand: this.handleKeyCommand,
-          onChange: this.onChange,
-          onTab: this.onTab,
-          placeholder: 'Write code and annotations...',
-
-          spellCheck: true
-        })
+      null,
+      this.state.codeBlock.title && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'h1',
+        null,
+        this.state.codeBlock.title
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'button',
-        { onClick: this.onSubmit },
-        'Save code'
+        'div',
+        { className: 'RichEditor-root' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(BlockStyleControls, {
+          editorState: editorState,
+          onToggle: this.toggleBlockType
+        }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(InlineStyleControls, {
+          editorState: editorState,
+          onToggle: this.toggleInlineStyle
+        }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: className, onClick: this.focus },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_draft_js__["Editor"], {
+            blockStyleFn: getBlockStyle,
+            customStyleMap: styleMap,
+            editorState: editorState,
+            handleKeyCommand: this.handleKeyCommand,
+            onChange: this.onChange,
+            onTab: this.onTab,
+            placeholder: 'Write code and annotations...',
+
+            spellCheck: true
+          })
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'button',
+          { onClick: this.onSubmit },
+          'Save code'
+        )
       )
     );
   }
@@ -52881,7 +52904,7 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           null,
-          folder.name,
+          folder.title,
           '  ',
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'a',
@@ -52938,13 +52961,13 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
               'arrow_back'
             )
           ),
-          this.state.selectedFolder.name ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          this.state.selectedFolder.title ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',
             { className: 'collection-header' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'h4',
               null,
-              this.state.selectedFolder.name
+              this.state.selectedFolder.title
             )
           ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',

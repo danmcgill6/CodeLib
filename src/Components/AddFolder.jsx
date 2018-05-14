@@ -63,10 +63,8 @@ const customStyles = {
             case 'rootFolder':
             this.postRootFolder()
             break
-
             default:
                 console.log('not found')
-
         }
        }
 
