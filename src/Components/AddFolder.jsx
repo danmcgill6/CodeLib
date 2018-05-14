@@ -25,6 +25,7 @@ const customStyles = {
         super();
         this.state = {
           modalIsOpen: false,
+          title: ''
          
         };
         this.openModal = this.openModal.bind(this);
@@ -34,6 +35,7 @@ const customStyles = {
       }
       openModal() {
           this.setState({modalIsOpen: true})
+          console.log('props', this.props)
         }
       afterOpenModal(){
 
@@ -42,18 +44,34 @@ const customStyles = {
         this.setState({modalIsOpen: false});
       }
 
-      onSubmit(e){
-        let title = this.props.title
-        let code = this.props.code
-        let folderId = this.state.selectedFolder.id
-        axios.post(`http://localhost:8080/api/code/${this.props.currentUser.id}`,{ code , folderId, title},{ headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-      }})
-        .then(res => console.log(res))
-    }
-   render(){
+      postRootFolder(){
+        let folderId = null
+        let title = this.state.title
+        let isRoot = this.props.isRoot
+        axios.post(`http://localhost:8080/api/folders/${this.props.currentUser.id}`,{folderId, title, isRoot},{ headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }})
+      }
 
+      titleChange(title){
+        this.setState({title})
+      }
+
+      onSubmit(e){
+        switch(this.props.type){
+            case 'rootFolder':
+            this.postRootFolder()
+            break
+
+            default:
+                console.log('not found')
+
+        }
+       }
+
+   render(){
+    console.log('state', this.state)
     return ( 
         <div id='yourAppElement'>
         <button className="btn-floating btn-large waves-effect waves-light green" onClick={this.openModal}><i class="material-icons">add</i></button>
@@ -63,7 +81,8 @@ const customStyles = {
           onRequestClose={this.closeModal}
           style={customStyles}
         >
-      <h2>Input Folder name</h2>
+         <input onChange={(e) => this.titleChange(e.target.value)}  id="first_name2" type="text" className="validate" />
+         <button className="waves-effect waves-light btn" onClick={this.onSubmit}>Save</button>
       </Modal> 
     </div> 
     );

@@ -26,18 +26,16 @@ export class Library extends React.Component {
        this.fetchData()
    }
 
-   
- 
   fetchData(){
       console.log(this.props)
     if(this.props.match.params.id){    
         console.log('yeah dog')         
       axios.get(`http://localhost:8080/api/folders/${this.props.match.params.id}`)
        .then(res => this.setState({
-           folders: res.data.folders, 
-           codeBlocks:res.data.codeBlocks, 
-           selectedFolder:res.data,
-           id: res.data.id
+            folders: res.data.folders, 
+            codeBlocks:res.data.codeBlocks, 
+            selectedFolder:res.data,
+            id: res.data.id
           }))
     }else{
        axios.get(`http://localhost:8080/api/folders/user/${this.props.currentUser.id}`)
@@ -50,7 +48,15 @@ console.log('library state', this.state)
     return ( 
         <div className="folderContainer">
         {
-            this.state.selectedFolder.name ? <h1>{this.state.selectedFolder.name}</h1> : <h1>Your library</h1> 
+            this.state.selectedFolder.title ? <h1>{this.state.selectedFolder.title}</h1> :
+            <div className="subHeaderContainer">
+            <div className="subTitleContainer">
+               <h3>YourLibrary</h3>
+           </div>
+           <div className="addButtonContainer">
+               <AddFolder isRoot={true} type="rootFolder" currentUser={this.props.currentUser}/>
+           </div>
+           </div>
         }
         <hr/>
         {

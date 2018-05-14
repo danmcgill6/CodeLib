@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
         <div className="col s12 m4">
         <div className="card white darken-1">
           <div className="card-content black-text">
-            <span className="card-title">{folder.name}</span>
+            <span className="card-title">{folder.title}</span>
             <p>Created:{folder.createdAt}</p>
           </div>
           <div className="card-action">

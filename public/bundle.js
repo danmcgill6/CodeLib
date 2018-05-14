@@ -51601,7 +51601,8 @@ class AddFolder extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
   constructor() {
     super();
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      title: ''
 
     };
     this.openModal = this.openModal.bind(this);
@@ -51611,23 +51612,41 @@ class AddFolder extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
   }
   openModal() {
     this.setState({ modalIsOpen: true });
+    console.log('props', this.props);
   }
   afterOpenModal() {}
   closeModal() {
     this.setState({ modalIsOpen: false });
   }
 
-  onSubmit(e) {
-    let title = this.props.title;
-    let code = this.props.code;
-    let folderId = this.state.selectedFolder.id;
-    __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post(`http://localhost:8080/api/code/${this.props.currentUser.id}`, { code, folderId, title }, { headers: {
+  postRootFolder() {
+    let folderId = null;
+    let title = this.state.title;
+    let isRoot = this.props.isRoot;
+    __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post(`http://localhost:8080/api/folders/${this.props.currentUser.id}`, { folderId, title, isRoot }, { headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      } }).then(res => console.log(res));
+      } });
   }
-  render() {
 
+  titleChange(title) {
+    this.setState({ title });
+  }
+
+  onSubmit(e) {
+    switch (this.props.type) {
+      case 'rootFolder':
+        this.postRootFolder();
+        break;
+
+      default:
+        console.log('not found');
+
+    }
+  }
+
+  render() {
+    console.log('state', this.state);
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { id: 'yourAppElement' },
@@ -51648,10 +51667,11 @@ class AddFolder extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
           onRequestClose: this.closeModal,
           style: customStyles
         },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { onChange: e => this.titleChange(e.target.value), id: 'first_name2', type: 'text', className: 'validate' }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h2',
-          null,
-          'Input Folder name'
+          'button',
+          { className: 'waves-effect waves-light btn', onClick: this.onSubmit },
+          'Save'
         )
       )
     );
@@ -51970,7 +51990,7 @@ const FolderDisplay = ({ folders }) => {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'span',
                     { className: 'card-title' },
-                    folder.name
+                    folder.title
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'p',
@@ -52110,14 +52130,27 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'folderContainer' },
-            this.state.selectedFolder.name ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            this.state.selectedFolder.title ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'h1',
                 null,
-                this.state.selectedFolder.name
+                this.state.selectedFolder.title
             ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h1',
-                null,
-                'Your library'
+                'div',
+                { className: 'subHeaderContainer' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'subTitleContainer' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'h3',
+                        null,
+                        'YourLibrary'
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'addButtonContainer' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__AddFolder__["a" /* default */], { isRoot: true, type: 'rootFolder', currentUser: this.props.currentUser })
+                )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
             this.state.codeBlocks.length > 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
