@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
         <div className="card white darken-1">
           <div className="card-content black-text">
             <span className="card-title">{folder.title}</span>
-            <p>Created:{folder.createdAt}</p>
+            <p>Created: {folder.createdAt.slice(0,10)}</p>
           </div>
           <div className="card-action">
           <Link to={`/library/${folder.id}`}>View</Link>
