@@ -57,6 +57,9 @@ position: relative;
   background-color: #427a35;
 }
 
+.footer{
+  background-color: #427a35;
+}
 .main-view {
   min-height: 70vh
 }

@@ -67,7 +67,13 @@ export class Library extends React.Component {
                     <h3>Code Blocks</h3>
                 </div>
             <div className="addButtonContainer">
-            <button className="btn-floating btn-large waves-effect waves-light green"> <Link to="/codeInput"><i class="material-icons">add</i></Link> </button>
+            <button className="btn-floating btn-large waves-effect waves-light green">
+             <Link to={{pathname: `/codeInput`,
+                        state: { 
+                            parentFolder: this.state.selectedFolder,
+                        }
+                        }}>
+                <i class="material-icons">add</i></Link> </button>
             </div>
             </div>
                 <br/>

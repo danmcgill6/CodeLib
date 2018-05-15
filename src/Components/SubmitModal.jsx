@@ -6,8 +6,6 @@ import Collapsible from 'react-collapsible';
 import register from '../registerServiceWorker';
 import { connect } from 'react-redux';
 
-
-
 const customStyles = {
   overlay:{
      zIndex:100,
@@ -29,13 +27,13 @@ Modal.setAppElement(document.getElementById('yourAppElement'))
 export class SubmitModal extends React.Component {
   constructor() {
     super();
-
     this.state = {
       modalIsOpen: false,
       folders:[],
       codeBlocks:[],
       selectedFolder:{},
-      folderStack:[]
+      folderStack:[],
+      loadedRoot:false
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -44,23 +42,43 @@ export class SubmitModal extends React.Component {
     this.renderPreviousFolder = this.renderPreviousFolder.bind(this)
   }
   componentDidMount(){
-      axios.get(`http://localhost:8080/api/folders/user/${this.props.currentUser.id}`,{ headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+    console.log(this.props)
+      if(this.props.selectedFolder){
+        this.loadSpecific(this.props.selectedFolder.id)
+      }else{
+        this.loadRoot()
+      }
+  }
+
+  loadSpecific(id){
+    axios.get(`http://localhost:8080/api/folders/${id}`,{ headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     }})
-        .then(res => {
-          console.log(res)
-          let root = {}
-          root.folders = res.data
-          this.setState({folders:res.data, folderStack: this.state.folderStack.concat(root)})
-        })
+    .then(res => {
+      console.log(res)
+      this.setState({folders:res.data.folders, folderStack: this.state.folderStack.concat(root)})
+    })
+  }
+
+  loadRoot(){
+    axios.get(`http://localhost:8080/api/folders/user/${this.props.currentUser.id}`,{ headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }})
+      .then(res => {
+        console.log(res)
+        let root = {}
+        root.folders = res.data
+        this.setState({loadedRoot:true,folders:res.data, folderStack: this.state.folderStack.concat(root)})
+      })
   }
 
   onSubmit(e){
     let title = this.props.title
     let code = this.props.code
     let folderId = this.state.selectedFolder.id
-    axios.post(`http://localhost:8080/api/code/${this.props.currentUser.id}`,{ code , folderId, title},{ headers: {
+    axios.post(`http://localhost:8080/api/code/${this.props.currentUser.id}`,{loadedRoot:true, code , folderId, title},{ headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
   }})
@@ -71,7 +89,6 @@ export class SubmitModal extends React.Component {
   afterOpenModal(){}
 
   closeModal() {
-
     this.setState({modalIsOpen: false});
   }
 
@@ -90,6 +107,7 @@ export class SubmitModal extends React.Component {
     }) 
   }
   renderPreviousFolder(){
+    if(this.state.loadedRoot){
     let previousFolder = this.state.folderStack[this.state.folderStack.length -2 ]
     let newCodeBlocks 
     let newFolders
@@ -100,7 +118,10 @@ export class SubmitModal extends React.Component {
       folderStack: this.state.folderStack.slice(0,this.state.folderStack.length - 1),
       folders: previousFolder.folders,
       codeBlocks : newCodeBlocks
-    }) 
+    })
+   }else{
+     this.loadSpecific(this.state.selectedFolder.id)
+   } 
   }
 
   render() {

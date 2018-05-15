@@ -63,6 +63,7 @@ class CodeInput extends Component {
       }
 
       render() {
+        console.log(this.props)
         const {editorState} = this.state;
 
         // If the user changes block type before entering any text, we can
@@ -84,7 +85,7 @@ class CodeInput extends Component {
             />
             <InlineStyleControls
               editorState={editorState}
-              onToggle={this.toggleInlineStyle}
+              onToggle={this.toggleInlineStyele}
             />
             <div className={className} onClick={this.focus}>
               <Editor
@@ -101,7 +102,10 @@ class CodeInput extends Component {
                 spellCheck={true}
               />
             </div>
-            <TitleModal code={convertToRaw(this.state.editorState.getCurrentContent())}/>
+            <TitleModal 
+              code={convertToRaw(this.state.editorState.getCurrentContent())} 
+              selectedFolder={this.props.location.state.selectedFolder}
+            />
           </div>
         );
       }
