@@ -7,8 +7,6 @@ import CodeBlockDisplay from './CodeBlockDisplay'
 import { connect } from 'react-redux';
 import AddFolder from './AddFolder'
 
-
-
 export class Library extends React.Component {
   constructor(props) {
       super(props)
@@ -45,7 +43,6 @@ export class Library extends React.Component {
   }
 
   render() {
-console.log('library state', this.state)
     return ( 
         <div className="folderContainer">
         {

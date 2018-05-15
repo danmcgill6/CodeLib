@@ -48,7 +48,8 @@ const customStyles = {
         let folderId = null
         let title = this.state.title
         let isRoot = this.props.isRoot
-        axios.post(`http://localhost:8080/api/folders/${this.props.currentUser.id}`,{folderId, title, isRoot},{ headers: {
+        let userId = this.props.currentUser.id
+        axios.post(`http://localhost:8080/api/folders/${this.props.currentUser.id}`,{folderId, title, isRoot, userId},{ headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }})
