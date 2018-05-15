@@ -42,43 +42,24 @@ export class SubmitModal extends React.Component {
     this.renderPreviousFolder = this.renderPreviousFolder.bind(this)
   }
   componentDidMount(){
-    console.log(this.props)
-      if(this.props.selectedFolder){
-        this.loadSpecific(this.props.selectedFolder.id)
-      }else{
-        this.loadRoot()
-      }
-  }
-
-  loadSpecific(id){
-    axios.get(`http://localhost:8080/api/folders/${id}`,{ headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }})
-    .then(res => {
-      console.log(res)
-      this.setState({folders:res.data.folders, folderStack: this.state.folderStack.concat(root)})
-    })
-  }
-
-  loadRoot(){
-    axios.get(`http://localhost:8080/api/folders/user/${this.props.currentUser.id}`,{ headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }})
-      .then(res => {
-        console.log(res)
-        let root = {}
-        root.folders = res.data
-        this.setState({loadedRoot:true,folders:res.data, folderStack: this.state.folderStack.concat(root)})
-      })
+      axios.get(`http://localhost:8080/api/folders/user/${this.props.currentUser.id}`,{ headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }})
+        .then(res => {
+          console.log(res)
+          let root = {}
+          root.folders = res.data
+          this.setState({loadedRoot:true,folders:res.data, folderStack: this.state.folderStack.concat(root)})
+        })
+      
   }
 
   onSubmit(e){
     let title = this.props.title
     let code = this.props.code
     let folderId = this.state.selectedFolder.id
-    axios.post(`http://localhost:8080/api/code/${this.props.currentUser.id}`,{loadedRoot:true, code , folderId, title},{ headers: {
+    axios.post(`http://localhost:8080/api/code/${this.props.currentUser.id}`,{ code , folderId, title},{ headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
   }})

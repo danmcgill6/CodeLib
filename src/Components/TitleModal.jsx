@@ -5,6 +5,7 @@ import axios from 'axios'
 import Collapsible from 'react-collapsible';
 import register from '../registerServiceWorker';
 import SubmitModal from './SubmitModal'
+import { connect } from 'react-redux';
 
 
 const customStyles = {
@@ -25,7 +26,7 @@ const customStyles = {
 // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement(document.getElementById('yourAppElement'))
 
-export default class TitleModal extends React.Component {
+export class TitleModal extends React.Component {
   constructor() {
     super();
 
@@ -36,6 +37,7 @@ export default class TitleModal extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   openModal() {this.setState({modalIsOpen: true});}
@@ -49,7 +51,19 @@ export default class TitleModal extends React.Component {
     this.setState({title})
   }
 
+  onSubmit(){
+    let title = this.state.title
+    let code = this.props.code
+    let folderId = this.props.selectedFolder.id 
+    axios.post(`http://localhost:8080/api/code/${this.props.currentUser.id}`,{ code , folderId, title},{ headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+  }})
+    .then(res => this.props.history.push('/'))
+  }
+
   render() {
+    console.log(this.props)
 
     return ( 
       <div id='yourAppElement' className ='modalContainer'>
@@ -69,8 +83,12 @@ export default class TitleModal extends React.Component {
       <label className="active" for="first_name2">Title</label>
     </div>
   </div>
-    
-        <SubmitModal title={this.state.title} code={this.props.code}/>
+       { 
+      this.props.selectedFolder ?  
+      <button className="waves-effect waves-light btn" onClick={this.onSubmit}>Save Code to {this.props.selectedFolder.title}</button> 
+      :
+       <SubmitModal title={this.state.title} code={this.props.code} />
+       }
       </Modal> 
       </div>
     </div> 
@@ -78,3 +96,8 @@ export default class TitleModal extends React.Component {
 );
 }
 }
+
+
+const mapState = (state) => ({ currentUser: state.currentUser });
+
+export default connect(mapState, null )(TitleModal);

@@ -63,7 +63,7 @@ class CodeInput extends Component {
       }
 
       render() {
-        console.log(this.props)
+        console.log('codeInput props',this.props)
         const {editorState} = this.state;
 
         // If the user changes block type before entering any text, we can
@@ -102,10 +102,15 @@ class CodeInput extends Component {
                 spellCheck={true}
               />
             </div>
+           {this.props.location.state ? 
             <TitleModal 
               code={convertToRaw(this.state.editorState.getCurrentContent())} 
-              selectedFolder={this.props.location.state.selectedFolder}
+              selectedFolder={this.props.location.state.parentFolder}
+              history={this.props.history}
             />
+            :
+            <TitleModal code={convertToRaw(this.state.editorState.getCurrentContent())} />
+            }
           </div>
         );
       }
