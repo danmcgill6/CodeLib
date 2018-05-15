@@ -51693,9 +51693,11 @@ class AddFolder extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Library__ = __webpack_require__("./src/Components/Library.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Login__ = __webpack_require__("./src/Components/Login.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Home__ = __webpack_require__("./src/Components/Home.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Redux_auth__ = __webpack_require__("./src/Redux/auth.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Footer__ = __webpack_require__("./src/Components/Footer.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Redux_auth__ = __webpack_require__("./src/Redux/auth.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
+
 
 
 
@@ -51714,7 +51716,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   //  }
   render() {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      __WEBPACK_IMPORTED_MODULE_9_react_router_dom__["a" /* BrowserRouter */],
+      __WEBPACK_IMPORTED_MODULE_10_react_router_dom__["a" /* BrowserRouter */],
       null,
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
@@ -51725,27 +51727,28 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
           { id: 'main', className: 'container' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { className: 'col s8' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_react_router_dom__["b" /* Route */], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_6__Home__["a" /* default */] }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_react_router_dom__["b" /* Route */], { exact: true, path: '/codeInput', component: __WEBPACK_IMPORTED_MODULE_2__CodeInput__["a" /* default */] }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_react_router_dom__["b" /* Route */], { exact: true, path: '/login', component: __WEBPACK_IMPORTED_MODULE_5__Login__["a" /* default */] }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_react_router_dom__["b" /* Route */], { exact: true, path: '/render/:id', component: __WEBPACK_IMPORTED_MODULE_3__RenderCode__["a" /* default */] }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_react_router_dom__["b" /* Route */], { exact: true, path: '/render', component: __WEBPACK_IMPORTED_MODULE_3__RenderCode__["a" /* default */] }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_react_router_dom__["b" /* Route */], { exact: true, path: '/library', component: __WEBPACK_IMPORTED_MODULE_4__Library__["a" /* default */] }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_react_router_dom__["b" /* Route */], { path: '/library/:id', component: __WEBPACK_IMPORTED_MODULE_4__Library__["a" /* default */] })
+            { className: 'col s8 main-view' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10_react_router_dom__["b" /* Route */], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_6__Home__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10_react_router_dom__["b" /* Route */], { exact: true, path: '/codeInput', component: __WEBPACK_IMPORTED_MODULE_2__CodeInput__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10_react_router_dom__["b" /* Route */], { exact: true, path: '/login', component: __WEBPACK_IMPORTED_MODULE_5__Login__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10_react_router_dom__["b" /* Route */], { exact: true, path: '/render/:id', component: __WEBPACK_IMPORTED_MODULE_3__RenderCode__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10_react_router_dom__["b" /* Route */], { exact: true, path: '/render', component: __WEBPACK_IMPORTED_MODULE_3__RenderCode__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10_react_router_dom__["b" /* Route */], { exact: true, path: '/library', component: __WEBPACK_IMPORTED_MODULE_4__Library__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10_react_router_dom__["b" /* Route */], { path: '/library/:id', component: __WEBPACK_IMPORTED_MODULE_4__Library__["a" /* default */] })
           )
-        )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Footer__["a" /* default */], null)
       )
     );
   }
 }
 const mapDispatch = (dispatch, ownProps) => ({
   persistUser: credentials => {
-    dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__Redux_auth__["a" /* persistUser */])(credentials, ownProps));
+    dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_9__Redux_auth__["a" /* persistUser */])(credentials, ownProps));
   }
 });
 
-/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_react_redux__["b" /* connect */])(null, mapDispatch)(App));
+/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8_react_redux__["b" /* connect */])(null, mapDispatch)(App));
 
 /***/ }),
 
@@ -52020,6 +52023,113 @@ const FolderDisplay = ({ folders }) => {
 
 /***/ }),
 
+/***/ "./src/Components/Footer.jsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+
+/* -----------------    COMPONENT     ------------------ */
+
+const Footer = () => {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+    "footer",
+    { className: "page-footer" },
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "div",
+      { className: "container" },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "div",
+        { className: "row" },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "col l6 s12" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "h5",
+            { className: "white-text" },
+            "Footer Content"
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "p",
+            { className: "grey-text text-lighten-4" },
+            "You can use rows and columns here to organize your footer content."
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "col l4 offset-l2 s12" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "h5",
+            { className: "white-text" },
+            "Links"
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "ul",
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "li",
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "a",
+                { className: "grey-text text-lighten-3", href: "#!" },
+                "Link 1"
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "li",
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "a",
+                { className: "grey-text text-lighten-3", href: "#!" },
+                "Link 2"
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "li",
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "a",
+                { className: "grey-text text-lighten-3", href: "#!" },
+                "Link 3"
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "li",
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "a",
+                { className: "grey-text text-lighten-3", href: "#!" },
+                "Link 4"
+              )
+            )
+          )
+        )
+      )
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "div",
+      { className: "footer-copyright" },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "div",
+        { className: "container" },
+        "\xA9 2014 Copyright Text",
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "a",
+          { className: "grey-text text-lighten-4 right", href: "#!" },
+          "More Links"
+        )
+      )
+    )
+  );
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Footer);
+
+/***/ }),
+
 /***/ "./src/Components/Home.jsx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -52127,6 +52237,7 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     }
 
     render() {
+        console.log('library state', this.state);
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'folderContainer' },
@@ -52240,7 +52351,7 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
   constructor(props) {
     super(props);
-    this.onLoginSubmit = this.onLoginSubmit.bind(this);
+    this.onSubmit = this.onLoginSubmit.bind(this);
   }
 
   render() {

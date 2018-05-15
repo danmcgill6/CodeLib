@@ -3,6 +3,16 @@ pre {
     font-size: 1em;
     overflow: auto;
 }
+body {
+  background-color: #9bac9707;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#main {
+  flex: 1 0 auto;
+}
 
 .backButton {
   margin-top: 15px;
@@ -47,7 +57,9 @@ position: relative;
   background-color: #427a35;
 }
 
-
+.main-view {
+  min-height: 70vh
+}
 
 .RichEditor-root {
     background: #fff;

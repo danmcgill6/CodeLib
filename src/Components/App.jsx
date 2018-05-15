@@ -5,6 +5,7 @@ import RenderCode from './RenderCode'
 import Library from './Library'
 import Login from './Login'
 import Home from './Home'
+import Footer from './Footer'
 import { connect } from 'react-redux';
 import { persistUser } from '../Redux/auth';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
@@ -20,8 +21,8 @@ class App extends Component {
       <Router>
       <div>
       <Nav />
-        <div id="main" className="container">
-          <div className="col s8">
+        <div  id="main" className="container">
+          <div className="col s8 main-view">
             <Route exact path="/" component={Home} />
             <Route exact path="/codeInput" component={CodeInput} />
             <Route exact path="/login" component={Login} />
@@ -31,7 +32,7 @@ class App extends Component {
             <Route path="/library/:id" component={Library} />
           </div>
        </div>
-
+       <Footer />
       </div>
     </Router>
 

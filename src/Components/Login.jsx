@@ -8,7 +8,7 @@ class Login extends React.Component {
 
   constructor(props) {
     super(props);
-    this.onLoginSubmit = this.onLoginSubmit.bind(this);
+    this.onSubmit = this.onLoginSubmit.bind(this);
   }
 
   render() {

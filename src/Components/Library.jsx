@@ -7,6 +7,7 @@ import CodeBlockDisplay from './CodeBlockDisplay'
 import { connect } from 'react-redux';
 import AddFolder from './AddFolder'
 
+
 export class Library extends React.Component {
   constructor(props) {
       super(props)
@@ -43,6 +44,7 @@ export class Library extends React.Component {
   }
 
   render() {
+    console.log('library state', this.state)
     return ( 
         <div className="folderContainer">
         {
@@ -61,9 +63,9 @@ export class Library extends React.Component {
             this.state.codeBlocks.length > 1 && 
             <div>
             <div className="subHeaderContainer">
-             <div className="subTitleContainer">
-                <h3>Code Blocks</h3>
-            </div>
+                <div className="subTitleContainer">
+                    <h3>Code Blocks</h3>
+                </div>
             <div className="addButtonContainer">
             <button className="btn-floating btn-large waves-effect waves-light green"> <Link to="/codeInput"><i class="material-icons">add</i></Link> </button>
             </div>
