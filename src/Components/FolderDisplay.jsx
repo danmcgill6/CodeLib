@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import DeleteButton from './DeleteButton'
 
  const FolderDisplay = ({folders}) => {
      console.log(folders)
@@ -14,7 +15,12 @@ import { Link } from 'react-router-dom'
             <p>Created: {folder.createdAt.slice(0,10)}</p>
           </div>
           <div className="card-action">
-          <Link to={`/library/${folder.id}`}>View</Link>
+          <div id="folderLink">
+            <Link to={`/library/${folder.id}`}>View</Link>
+          </div>
+          <div id="folderDelete">
+             <DeleteButton item={folder.title}/>
+          </div>
           </div>
         </div>
       </div>
