@@ -10,6 +10,13 @@ body {
   flex-direction: column;
 }
 
+#editFolder{
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  display:inline-block;
+}
+
 button{
   margin-right: 5px;
 }
