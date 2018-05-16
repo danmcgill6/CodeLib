@@ -45,7 +45,7 @@ const customStyles = {
       }
 
       onSubmit(e){
-        
+        axios.delete(`http://localhost:8080${this.props.apiRoute}${this.props.id}`)
       }
 
    render(){
@@ -59,7 +59,7 @@ const customStyles = {
           style={customStyles}
         >
         <h3>Are you sure you want to delete {this.props.item} ?</h3>
-        <button className="waves-effect waves-light btn green" onClick={this.openModal}>YES</button>
+        <button className="waves-effect waves-light btn green" onClick={this.onSubmit}>YES</button>
         <button className="waves-effect waves-light btn red" onClick={this.closeModal}>NO</button>
 
       </Modal> 

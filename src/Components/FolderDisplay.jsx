@@ -19,7 +19,7 @@ import DeleteButton from './DeleteButton'
             <Link to={`/library/${folder.id}`}>View</Link>
           </div>
           <div id="folderDelete">
-             <DeleteButton item={folder.title}/>
+             <DeleteButton item={folder.title} apiRoute="/api/folders/" id={folder.id}/>
           </div>
           </div>
         </div>

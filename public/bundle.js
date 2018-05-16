@@ -52032,7 +52032,9 @@ class DeleteButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compone
     this.setState({ modalIsOpen: false });
   }
 
-  onSubmit(e) {}
+  onSubmit(e) {
+    __WEBPACK_IMPORTED_MODULE_2_axios___default.a.delete(`http://localhost:8080${this.props.apiRoute}${this.props.id}`);
+  }
 
   render() {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -52064,7 +52066,7 @@ class DeleteButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compone
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'button',
-          { className: 'waves-effect waves-light btn green', onClick: this.openModal },
+          { className: 'waves-effect waves-light btn green', onClick: this.onSubmit },
           'YES'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -52138,7 +52140,7 @@ const FolderDisplay = ({ folders }) => {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           { id: 'folderDelete' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DeleteButton__["a" /* default */], { item: folder.title })
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DeleteButton__["a" /* default */], { item: folder.title, apiRoute: '/api/folders/', id: folder.id })
         )
       )
     )
