@@ -55,22 +55,32 @@ const customStyles = {
         }})
       }
 
+      postRegular(){
+        let folderId = this.props.folderId
+        let title = this.state.title
+        let isRoot = this.props.isRoot
+        let userId = this.props.currentUser.id
+        axios.post(`http://localhost:8080/api/folders/${this.props.currentUser.id}`,{folderId, title, isRoot, userId},{ headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }})
+      }
+
       titleChange(title){
         this.setState({title})
       }
 
       onSubmit(e){
-        switch(this.props.type){
-            case 'rootFolder':
+        if(this.props.isRoot)
             this.postRootFolder()
-            break
-            default:
-                console.log('not found')
+        else{
+          this.postRegular()
         }
+        
        }
 
    render(){
-    console.log('state', this.state)
+    console.log('props', this.props)
     return ( 
         <div id='yourAppElement'>
         <button className="btn-floating btn-large waves-effect waves-light green" onClick={this.openModal}><i class="material-icons">add</i></button>
@@ -80,6 +90,7 @@ const customStyles = {
           onRequestClose={this.closeModal}
           style={customStyles}
         >
+        <h3>Enter folder Title</h3>
          <input onChange={(e) => this.titleChange(e.target.value)}  id="first_name2" type="text" className="validate" />
          <button className="waves-effect waves-light btn" onClick={this.onSubmit}>Save</button>
       </Modal> 
