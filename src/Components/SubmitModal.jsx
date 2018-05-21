@@ -83,7 +83,35 @@ export class SubmitModal extends React.Component {
       )
       .then(res => console.log(res));
   }else{
-    console.log('editMode')
+    if(this.props.folderId === this.state.selectedFolder.folderId){
+      axios.put(`http://localhost:8080/api/folders/${this.props.folderId}`,
+      { folderId, isRoot:false  },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      }).then(res => {
+        console.log('yo')
+          axios.put(`http://localhost:8080/api/folders/${this.state.selectedFolder.id}`,
+          { folderId: null , isRoot:true  },
+          {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            }
+          })
+        })
+    }else{
+      axios.put(`http://localhost:8080/api/folders/${this.props.folderId}`,
+      { folderId, isRoot:false  },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      })
+    }
   }
 }
 

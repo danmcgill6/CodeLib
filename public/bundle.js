@@ -52171,7 +52171,7 @@ class EditButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
           null,
           'Edit '
         ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__SubmitModal__["a" /* default */], { editMode: true }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__SubmitModal__["a" /* default */], { editMode: true, folderId: this.props.folderId }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'button',
           { className: 'waves-effect waves-light btn green', onClick: this.onSubmit },
@@ -52231,7 +52231,7 @@ const FolderDisplay = ({ folders }) => {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { id: 'editFolder' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__EditButton__["a" /* default */], null)
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__EditButton__["a" /* default */], { folderId: folder.id })
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'p',
@@ -53230,7 +53230,29 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
         }
       }).then(res => console.log(res));
     } else {
-      console.log('editMode');
+      if (this.props.folderId === this.state.selectedFolder.folderId) {
+        __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put(`http://localhost:8080/api/folders/${this.props.folderId}`, { folderId, isRoot: false }, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          }
+        }).then(res => {
+          console.log('yo');
+          __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put(`http://localhost:8080/api/folders/${this.state.selectedFolder.id}`, { folderId: null, isRoot: true }, {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            }
+          });
+        });
+      } else {
+        __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put(`http://localhost:8080/api/folders/${this.props.folderId}`, { folderId, isRoot: false }, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          }
+        });
+      }
     }
   }
 

@@ -60,7 +60,7 @@ const customStyles = {
           style={customStyles}
         >
         <h3>Edit </h3>
-        <SubmitModal editMode={true} />
+        <SubmitModal editMode={true} folderId={this.props.folderId}/>
         <button className="waves-effect waves-light btn green" onClick={this.onSubmit}>YES</button>
         <button className="waves-effect waves-light btn red" onClick={this.closeModal}>NO</button>
 

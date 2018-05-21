@@ -14,7 +14,7 @@ import EditButton from './EditButton'
           <div className="card-content black-text">
             <span className="card-title">{folder.title}</span>
             <div id="editFolder">
-                <EditButton />
+                <EditButton folderId={folder.id}/>
             </div>
             <p>Created: {folder.createdAt.slice(0,10)}</p>
           </div>
