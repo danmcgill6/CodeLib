@@ -33,7 +33,8 @@ export class SubmitModal extends React.Component {
       codeBlocks: [],
       selectedFolder: {},
       folderStack: [],
-      loadedRoot: false
+      loadedRoot: false,
+      editMode: false
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -68,6 +69,7 @@ export class SubmitModal extends React.Component {
     let title = this.props.title;
     let code = this.props.code;
     let folderId = this.state.selectedFolder.id;
+    if(!this.props.editMode){
     axios
       .post(
         `http://localhost:8080/api/code/${this.props.currentUser.id}`,
@@ -80,7 +82,12 @@ export class SubmitModal extends React.Component {
         }
       )
       .then(res => console.log(res));
+  }else{
+    console.log('editMode')
   }
+}
+
+
 
   openModal() {
     this.setState({ modalIsOpen: true });
@@ -140,7 +147,7 @@ export class SubmitModal extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log('PROPS',  this.props);
     //variable folders holds all of the current rendered folders as list items , which
     //when clicked call renderfolder content, rendering the apropriat content
     const folders = this.state.folders.map(folder => {
@@ -223,6 +230,6 @@ export class SubmitModal extends React.Component {
   }
 }
 
-const mapState = state => ({ currentUser: state.currentUser });
+const mapState = (state, ownProps) => ({ currentUser: state.currentUser, ownProps });
 
 export default connect(mapState, null)(SubmitModal);

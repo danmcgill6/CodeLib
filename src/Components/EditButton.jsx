@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Modal from 'react-modal';
+import SubmitModal from './SubmitModal'
 
 
 const customStyles = {
@@ -59,6 +60,7 @@ const customStyles = {
           style={customStyles}
         >
         <h3>Edit </h3>
+        <SubmitModal editMode={true} />
         <button className="waves-effect waves-light btn green" onClick={this.onSubmit}>YES</button>
         <button className="waves-effect waves-light btn red" onClick={this.closeModal}>NO</button>
 
