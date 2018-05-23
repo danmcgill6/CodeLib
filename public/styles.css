@@ -4,10 +4,11 @@ pre {
     overflow: auto;
 }
 body {
-  background-color: #9bac9707;
+  background-color: #363d391a;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif
 }
 
 #editFolder{
@@ -15,6 +16,10 @@ body {
   right: 12px;
   top: 10px;
   display:inline-block;
+}
+
+.modalContainer{
+  padding: 35px;
 }
 
 button{
@@ -37,6 +42,11 @@ button{
 position: relative;
 }
 
+nav{
+  font-family: "PT Sans";
+}
+
+
 .subTitleContainer{
   display:inline-block;
   margin-right:25px;
@@ -57,6 +67,33 @@ position: relative;
   right: 0;
   bottom: 0;
   z-index: 100;
+}
+
+.folder-button{
+  position: absolute;
+  top: 1px;
+}
+.add-folder-container{
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  color: #26af07
+}
+.collection-container{
+  padding: 10px;
+  border: none;
+  background-color: #7c817b4d;
+  border-radius: 5px;
+}
+.code-link{
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+font-size: 22px;
+margin-bottom: 10px;
+}
+i:hover{
+  background-color: rgba(172, 168, 168, 0.637);
+  border-radius: 5px;
+  cursor: pointer;
 }
 #side-nav {
   background: '#2c3e50';

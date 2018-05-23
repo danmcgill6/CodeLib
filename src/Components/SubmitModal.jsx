@@ -34,7 +34,6 @@ export class SubmitModal extends React.Component {
       selectedFolder: {},
       folderStack: [],
       loadedRoot: false,
-      editMode: false
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -209,12 +208,19 @@ export class SubmitModal extends React.Component {
       //div for modal
       <div id="yourAppElement">
       {/* element that is displaying this component */}
-        <button
-          className="waves-effect waves-light btn"
-          onClick={this.openModal}
-        >
-          Save Code
-        </button>
+      {
+        this.props.editMode ?
+        <i className="material-icons icon-button" onClick={this.openModal}>folder</i>
+          :
+          <button
+            className="waves-effect waves-light btn"
+            onClick={this.openModal}
+          >
+            Save Code
+          </button>
+        
+
+      }
         {/* start of modal */}
         <Modal
           isOpen={this.state.modalIsOpen}

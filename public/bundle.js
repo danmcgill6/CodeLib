@@ -51627,7 +51627,9 @@ class AddFolder extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
     __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post(`http://localhost:8080/api/folders/${this.props.currentUser.id}`, { folderId, title, isRoot, userId }, { headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      } });
+      } }).then(_ => {
+      console.log("PROPS DOG", this.props);
+    });
   }
 
   postRegular() {
@@ -51638,13 +51640,14 @@ class AddFolder extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
     __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post(`http://localhost:8080/api/folders/${this.props.currentUser.id}`, { folderId, title, isRoot, userId }, { headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      } });
+      } }).then(_ => {
+      console.log("PROPS DOG", this.props);
+    });
   }
 
   titleChange(title) {
     this.setState({ title });
   }
-
   onSubmit(e) {
     if (this.props.isRoot) this.postRootFolder();else {
       this.postRegular();
@@ -51655,15 +51658,11 @@ class AddFolder extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
     console.log('props', this.props);
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
-      { id: 'yourAppElement' },
+      { id: 'yourAppElement', className: 'add-folder-container' },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'button',
-        { className: 'btn-floating btn-large waves-effect waves-light green', onClick: this.openModal },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'i',
-          { 'class': 'material-icons' },
-          'add'
-        )
+        'i',
+        { 'class': 'material-icons medium icon-button', onClick: this.openModal },
+        'add'
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_4_react_modal___default.a,
@@ -51776,16 +51775,20 @@ const mapDispatch = (dispatch, ownProps) => ({
 const CodeBlockDisplay = ({ codeBlocks }) => {
 
     const displayedCodeBlocks = codeBlocks.map(codeBlock => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Link */],
-        { to: `/render/${codeBlock.id}`, className: 'collection-item' },
-        codeBlock.title
+        'div',
+        { className: 'code-link' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Link */],
+            { to: `/render/${codeBlock.id}`, className: 'collection-item' },
+            codeBlock.title
+        )
     ));
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'row' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { 'class': 'collection' },
+            { className: 'collection collection-container' },
             displayedCodeBlocks
         )
     );
@@ -52041,13 +52044,9 @@ class DeleteButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compone
       'div',
       { id: 'yourAppElement' },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'button',
-        { className: 'btn-floating', onClick: this.openModal },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'i',
-          { 'class': 'material-icons' },
-          'delete'
-        )
+        'i',
+        { className: 'material-icons icon-button' },
+        'delete'
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_4_react_modal___default.a,
@@ -52186,7 +52185,7 @@ class EditButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
     );
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = EditButton;
+/* unused harmony export default */
 
 
 /***/ }),
@@ -52204,6 +52203,8 @@ class EditButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router_dom__ = __webpack_require__("./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__DeleteButton__ = __webpack_require__("./src/Components/DeleteButton.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__EditButton__ = __webpack_require__("./src/Components/EditButton.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__SubmitModal__ = __webpack_require__("./src/Components/SubmitModal.jsx");
+
 
 
 
@@ -52212,59 +52213,59 @@ class EditButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 
 
 const FolderDisplay = ({ folders }) => {
-    console.log(folders);
+  console.log(folders);
 
-    let displayedFolders = folders.map(folder => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+  let displayedFolders = folders.map(folder => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+    'div',
+    { className: 'col s12 m4' },
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'div',
+      { className: 'card white darken-1' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: 'col s12 m4' },
+        { className: 'card-content black-text' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'card white darken-1' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'card-content black-text' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    { className: 'card-title' },
-                    folder.title
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { id: 'editFolder' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__EditButton__["a" /* default */], { folderId: folder.id })
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'p',
-                    null,
-                    'Created: ',
-                    folder.createdAt.slice(0, 10)
-                )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'card-action' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { id: 'folderLink' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["c" /* Link */],
-                        { to: `/library/${folder.id}` },
-                        'View'
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { id: 'folderDelete' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DeleteButton__["a" /* default */], { item: folder.title, apiRoute: '/api/folders/', id: folder.id })
-                )
-            )
+          'span',
+          { className: 'card-title' },
+          folder.title
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { id: 'editFolder' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__SubmitModal__["a" /* default */], { editMode: true, folderId: folder.id })
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          'Created: ',
+          folder.createdAt.slice(0, 10)
         )
-    ));
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: 'row' },
-        displayedFolders
-    );
+        { className: 'card-action' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { id: 'folderLink' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["c" /* Link */],
+            { to: `/library/${folder.id}` },
+            'View'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { id: 'folderDelete' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DeleteButton__["a" /* default */], { item: folder.title, apiRoute: '/api/folders/', id: folder.id })
+        )
+      )
+    )
+  ));
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+    'div',
+    { className: 'row' },
+    displayedFolders
+  );
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (FolderDisplay);
@@ -52298,12 +52299,12 @@ const Footer = () => {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "h5",
             { className: "white-text" },
-            "Footer Content"
+            "CodeLib"
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "p",
             { className: "grey-text text-lighten-4" },
-            "You can use rows and columns here to organize your footer content."
+            "Your online code library."
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -52476,7 +52477,7 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
   }
 
   render() {
-    console.log("library state", this.state);
+    console.log('library props', this.props);
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       "div",
       { className: "folderContainer" },
@@ -52493,12 +52494,12 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "h3",
             null,
-            "YourLibrary"
+            "Your Library"
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
-          { className: "addButtonContainer" },
+          { className: "add-folder-container" },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__AddFolder__["a" /* default */], {
             isRoot: true,
             folderId: null,
@@ -52507,7 +52508,7 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         )
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
-      this.state.codeBlocks.length > 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      this.state.selectedFolder.title && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
         null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -52523,35 +52524,32 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "div",
-            { className: "addButtonContainer" },
+            __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["c" /* Link */],
+            {
+              to: {
+                pathname: `/codeInput`,
+                state: {
+                  parentFolder: this.state.selectedFolder
+                }
+              }
+            },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "button",
-              { className: "btn-floating btn-large waves-effect waves-light green" },
+              "div",
+              { className: "add-folder-container" },
+              " ",
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["c" /* Link */],
-                {
-                  to: {
-                    pathname: `/codeInput`,
-                    state: {
-                      parentFolder: this.state.selectedFolder
-                    }
-                  }
-                },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  "i",
-                  { "class": "material-icons" },
-                  "add"
-                )
-              ),
-              " "
+                "i",
+                { "class": "material-icons medium" },
+                "add"
+              )
             )
-          )
+          ),
+          " "
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", null),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__CodeBlockDisplay__["a" /* default */], { codeBlocks: this.state.codeBlocks })
       ),
-      this.state.codeBlocks.length > 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      this.state.selectedFolder.title && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
         { className: "subHeaderContainer" },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -52565,7 +52563,7 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
-          { className: "addButtonContainer" },
+          { className: "add-folder-container" },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__AddFolder__["a" /* default */], {
             isRoot: false,
             folderId: this.state.selectedFolder.id,
@@ -53191,8 +53189,7 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
       codeBlocks: [],
       selectedFolder: {},
       folderStack: [],
-      loadedRoot: false,
-      editMode: false
+      loadedRoot: false
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -53342,7 +53339,11 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
         { id: "yourAppElement" },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        this.props.editMode ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "i",
+          { className: "material-icons icon-button", onClick: this.openModal },
+          "folder"
+        ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "button",
           {
             className: "waves-effect waves-light btn",

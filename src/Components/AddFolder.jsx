@@ -52,7 +52,9 @@ const customStyles = {
         axios.post(`http://localhost:8080/api/folders/${this.props.currentUser.id}`,{folderId, title, isRoot, userId},{ headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-        }})
+        }}).then(_ => {
+          console.log("PROPS DOG", this.props)
+        })
       }
 
       postRegular(){
@@ -63,27 +65,27 @@ const customStyles = {
         axios.post(`http://localhost:8080/api/folders/${this.props.currentUser.id}`,{folderId, title, isRoot, userId},{ headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-        }})
+        }}).then(_ => {
+          console.log("PROPS DOG", this.props)
+        })
       }
 
       titleChange(title){
         this.setState({title})
       }
-
       onSubmit(e){
         if(this.props.isRoot)
             this.postRootFolder()
         else{
           this.postRegular()
         }
-        
        }
 
    render(){
     console.log('props', this.props)
     return ( 
-        <div id='yourAppElement'>
-        <button className="btn-floating btn-large waves-effect waves-light green" onClick={this.openModal}><i class="material-icons">add</i></button>
+        <div id='yourAppElement' className="add-folder-container">
+       <i class="material-icons medium icon-button" onClick={this.openModal}>add</i>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}

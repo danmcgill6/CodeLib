@@ -51,7 +51,7 @@ const customStyles = {
    render(){
     return ( 
         <div id='yourAppElement'>
-        <button className="btn-floating" onClick={this.openModal}><i class="material-icons">delete</i></button>
+       <i className="material-icons icon-button">delete</i>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}

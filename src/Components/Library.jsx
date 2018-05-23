@@ -53,17 +53,19 @@ export class Library extends React.Component {
   }
 
   render() {
-    console.log("library state", this.state);
+   console.log('library props', this.props)
     return (
       <div className="folderContainer">
+      {/* if there is no title the user is in the root directory so 
+      we want to pass down isRoot prop to add folder component */}
         {this.state.selectedFolder.title ? (
           <h1>{this.state.selectedFolder.title}</h1>
         ) : (
           <div className="subHeaderContainer">
             <div className="subTitleContainer">
-              <h3>YourLibrary</h3>
+              <h3>Your Library</h3>
             </div>
-            <div className="addButtonContainer">
+            <div className="add-folder-container">
               <AddFolder 
                 isRoot={true}
                 folderId={null}
@@ -73,14 +75,12 @@ export class Library extends React.Component {
           </div>
         )}
         <hr />
-        {this.state.codeBlocks.length > 1 && (
+        {this.state.selectedFolder.title && (
           <div>
             <div className="subHeaderContainer">
               <div className="subTitleContainer">
                 <h3>Code Blocks</h3>
               </div>
-              <div className="addButtonContainer">
-                <button className="btn-floating btn-large waves-effect waves-light green">
                   <Link
                     to={{
                       pathname: `/codeInput`,
@@ -89,21 +89,20 @@ export class Library extends React.Component {
                       }
                     }}
                   >
-                    <i class="material-icons">add</i>
+                <div className="add-folder-container"> <i class="material-icons medium">add</i></div>
                   </Link>{" "}
-                </button>
-              </div>
+       
             </div>
             <br />
             <CodeBlockDisplay codeBlocks={this.state.codeBlocks} />
           </div>
         )}
-        {this.state.codeBlocks.length > 1 && (
+        {this.state.selectedFolder.title && (
           <div className="subHeaderContainer">
             <div className="subTitleContainer">
               <h3>Folders</h3>
             </div>
-            <div className="addButtonContainer">
+            <div className="add-folder-container">
               <AddFolder 
                 isRoot={false}
                 folderId={this.state.selectedFolder.id}

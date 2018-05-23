@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import DeleteButton from './DeleteButton'
 import EditButton from './EditButton'
+import SubmitModal from './SubmitModal'
 
  const FolderDisplay = ({folders}) => {
      console.log(folders)
@@ -14,7 +15,7 @@ import EditButton from './EditButton'
           <div className="card-content black-text">
             <span className="card-title">{folder.title}</span>
             <div id="editFolder">
-                <EditButton folderId={folder.id}/>
+            <SubmitModal editMode={true} folderId={folder.id}/>
             </div>
             <p>Created: {folder.createdAt.slice(0,10)}</p>
           </div>
