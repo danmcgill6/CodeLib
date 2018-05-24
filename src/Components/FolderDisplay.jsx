@@ -6,7 +6,7 @@ import DeleteButton from './DeleteButton'
 import EditButton from './EditButton'
 import SubmitModal from './SubmitModal'
 
- const FolderDisplay = ({folders}) => {
+ const FolderDisplay = ({folders,history}) => {
      console.log(folders)
 
      let displayedFolders = folders.map(folder => 
@@ -15,7 +15,7 @@ import SubmitModal from './SubmitModal'
           <div className="card-content black-text">
             <span className="card-title">{folder.title}</span>
             <div id="editFolder">
-            <SubmitModal editMode={true} folderId={folder.id}/>
+            <SubmitModal editMode={true} folderId={folder.id} history={history}/>
             </div>
             <p>Created: {folder.createdAt.slice(0,10)}</p>
           </div>

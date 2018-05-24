@@ -51913,7 +51913,8 @@ class CodeInput extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         selectedFolder: this.props.location.state.parentFolder,
         history: this.props.history
       }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__TitleModal__["a" /* default */], {
-        code: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_draft_js__["convertToRaw"])(this.state.editorState.getCurrentContent())
+        code: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_draft_js__["convertToRaw"])(this.state.editorState.getCurrentContent()),
+        history: this.props.history
       })
     );
   }
@@ -52212,7 +52213,7 @@ class EditButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 
 
 
-const FolderDisplay = ({ folders }) => {
+const FolderDisplay = ({ folders, history }) => {
   console.log(folders);
 
   let displayedFolders = folders.map(folder => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -52232,7 +52233,7 @@ const FolderDisplay = ({ folders }) => {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           { id: 'editFolder' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__SubmitModal__["a" /* default */], { editMode: true, folderId: folder.id })
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__SubmitModal__["a" /* default */], { editMode: true, folderId: folder.id, history: history })
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'p',
@@ -52571,7 +52572,7 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           })
         )
       ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__FolderDisplay__["a" /* default */], { folders: this.state.folders })
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__FolderDisplay__["a" /* default */], { folders: this.state.folders, history: this.props.history })
     );
   }
 }
@@ -53225,7 +53226,7 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
           Accept: "application/json",
           "Content-Type": "application/json"
         }
-      }).then(res => console.log(res));
+      }).then(_ => this.props.history.push('/library'));
     } else {
       if (this.props.folderId === this.state.selectedFolder.folderId) {
         __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put(`http://localhost:8080/api/folders/${this.props.folderId}`, { folderId, isRoot: false }, {
@@ -53241,14 +53242,14 @@ class SubmitModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
               "Content-Type": "application/json"
             }
           });
-        });
+        }).then(_ => this.props.history.push('/library'));
       } else {
         __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put(`http://localhost:8080/api/folders/${this.props.folderId}`, { folderId, isRoot: false }, {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json"
           }
-        });
+        }).then(_ => this.props.history.push('/library'));
       }
     }
   }

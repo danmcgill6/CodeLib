@@ -80,7 +80,7 @@ export class SubmitModal extends React.Component {
           }
         }
       )
-      .then(res => console.log(res));
+      .then(_ => this.props.history.push('/library'));
   }else{
     if(this.props.folderId === this.state.selectedFolder.folderId){
       axios.put(`http://localhost:8080/api/folders/${this.props.folderId}`,
@@ -101,6 +101,7 @@ export class SubmitModal extends React.Component {
             }
           })
         })
+        .then(_ => this.props.history.push('/library'))
     }else{
       axios.put(`http://localhost:8080/api/folders/${this.props.folderId}`,
       { folderId, isRoot:false  },
@@ -109,7 +110,7 @@ export class SubmitModal extends React.Component {
           Accept: "application/json",
           "Content-Type": "application/json"
         }
-      })
+      }).then(_ => this.props.history.push('/library'))
     }
   }
 }

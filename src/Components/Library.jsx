@@ -111,7 +111,7 @@ export class Library extends React.Component {
             </div>
           </div>
         )}
-        <FolderDisplay folders={this.state.folders} />
+        <FolderDisplay folders={this.state.folders} history={this.props.history} />
       </div>
     );
   }

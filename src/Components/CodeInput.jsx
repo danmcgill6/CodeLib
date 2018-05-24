@@ -118,6 +118,7 @@ class CodeInput extends Component {
         ) : (
           <TitleModal
             code={convertToRaw(this.state.editorState.getCurrentContent())}
+            history={this.props.history}
           />
         )}
       </div>
