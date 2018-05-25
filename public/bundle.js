@@ -53562,7 +53562,7 @@ class TitleModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
             { className: "waves-effect waves-light btn", onClick: this.onSubmit },
             "Save Code to ",
             this.props.selectedFolder.title
-          ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__SubmitModal__["a" /* default */], { title: this.state.title, code: this.props.code })
+          ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__SubmitModal__["a" /* default */], { title: this.state.title, code: this.props.code, history: this.props.history })
         )
       )
     );

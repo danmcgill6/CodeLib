@@ -106,7 +106,7 @@ export class TitleModal extends React.Component {
                 Save Code to {this.props.selectedFolder.title}
               </button>
             ) : (
-              <SubmitModal title={this.state.title} code={this.props.code} />
+              <SubmitModal title={this.state.title} code={this.props.code} history={this.props.history}/>
             )}
           </Modal>
         </div>
