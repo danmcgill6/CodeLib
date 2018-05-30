@@ -69,6 +69,7 @@ export class Library extends React.Component {
                 isRoot={true}
                 folderId={null}
                 currentUser={this.props.currentUser}
+                history={this.props.history}
               />
             </div>
           </div>
@@ -105,6 +106,7 @@ export class Library extends React.Component {
                 isRoot={false}
                 folderId={this.state.selectedFolder.id}
                 currentUser={this.props.currentUser}
+                history={this.props.history}
               />
             </div>
           </div>

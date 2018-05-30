@@ -18,7 +18,10 @@ class Home extends Component {
     return (
       <div className="center-align">
          {this.props.currentUser.email ? <h1>Welcome Back!</h1> : <h1>Welcome to CodeLib !</h1>} 
-         {this.props.currentUser.email ? <h1>Recent Code Blocks</h1> : <SignUp />} 
+         {/* {this.props.currentUser.email ? <h1>Recent Code Blocks</h1> : <SignUp />}  */}
+         <p>Code Lib is an online tool for programmers to save and document useful code snippets. 
+           While developing you ogten repeat yourself, so why not store some of your most common designs all on one place?
+           With codeLib you create a block , add a title and description , and save it to your library.</p>
       </div>
     );
   }

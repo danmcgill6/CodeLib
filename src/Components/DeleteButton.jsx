@@ -46,6 +46,9 @@ const customStyles = {
 
       onSubmit(e){
         axios.delete(`http://localhost:8080${this.props.apiRoute}${this.props.id}`)
+        .then(_ => {
+          this.props.history.push('/')
+        })
       }
 
    render(){

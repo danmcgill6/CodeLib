@@ -51628,7 +51628,7 @@ class AddFolder extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       } }).then(_ => {
-      console.log("PROPS DOG", this.props);
+      this.props.history.push('/');
     });
   }
 
@@ -51641,7 +51641,7 @@ class AddFolder extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component 
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       } }).then(_ => {
-      console.log("PROPS DOG", this.props);
+      this.props.history.push('/');
     });
   }
 
@@ -52037,7 +52037,9 @@ class DeleteButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compone
   }
 
   onSubmit(e) {
-    __WEBPACK_IMPORTED_MODULE_2_axios___default.a.delete(`http://localhost:8080${this.props.apiRoute}${this.props.id}`);
+    __WEBPACK_IMPORTED_MODULE_2_axios___default.a.delete(`http://localhost:8080${this.props.apiRoute}${this.props.id}`).then(_ => {
+      this.props.history.push('/');
+    });
   }
 
   render() {
@@ -52389,32 +52391,32 @@ const Footer = () => {
 
 
 class Home extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-    constructor(props) {
-        super(props);
-        this.state = { user: {} };
-    }
+  constructor(props) {
+    super(props);
+    this.state = { user: {} };
+  }
 
-    componentDidMount() {}
-    render() {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'center-align' },
-            this.props.currentUser.email ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h1',
-                null,
-                'Welcome Back!'
-            ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h1',
-                null,
-                'Welcome to CodeLib !'
-            ),
-            this.props.currentUser.email ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h1',
-                null,
-                'Recent Code Blocks'
-            ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__SignUp__["a" /* default */], null)
-        );
-    }
+  componentDidMount() {}
+  render() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'div',
+      { className: 'center-align' },
+      this.props.currentUser.email ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'h1',
+        null,
+        'Welcome Back!'
+      ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'h1',
+        null,
+        'Welcome to CodeLib !'
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'p',
+        null,
+        'Code Lib is an online tool for programmers to save and document useful code snippets. While developing you ogten repeat yourself, so why not store some of your most common designs all on one place? With codeLib you create a block , add a title and description , and save it to your library.'
+      )
+    );
+  }
 }
 const mapState = state => ({ currentUser: state.currentUser });
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_react_redux__["b" /* connect */])(mapState)(Home));
@@ -52504,7 +52506,8 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__AddFolder__["a" /* default */], {
             isRoot: true,
             folderId: null,
-            currentUser: this.props.currentUser
+            currentUser: this.props.currentUser,
+            history: this.props.history
           })
         )
       ),
@@ -52567,7 +52570,8 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__AddFolder__["a" /* default */], {
             isRoot: false,
             folderId: this.state.selectedFolder.id,
-            currentUser: this.props.currentUser
+            currentUser: this.props.currentUser,
+            history: this.props.history
           })
         )
       ),
@@ -53096,7 +53100,7 @@ const mapDispatch = (dispatch, ownProps) => ({
   }
 });
 
-/* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapState, mapDispatch)(Signup));
+/* unused harmony default export */ var _unused_webpack_default_export = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapState, mapDispatch)(Signup));
 
 /***/ }),
 

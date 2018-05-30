@@ -53,7 +53,7 @@ const customStyles = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }}).then(_ => {
-          console.log("PROPS DOG", this.props)
+            this.props.history.push('/')
         })
       }
 
@@ -66,7 +66,7 @@ const customStyles = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }}).then(_ => {
-          console.log("PROPS DOG", this.props)
+         this.props.history.push('/')
         })
       }
 
