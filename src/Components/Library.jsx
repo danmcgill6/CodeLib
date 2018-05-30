@@ -32,7 +32,6 @@ export class Library extends React.Component {
   fetchData() {
     console.log(this.props);
     if (this.props.match.params.id) {
-      console.log("yeah dog");
       axios
         .get(`http://localhost:8080/api/folders/${this.props.match.params.id}`)
         .then(res =>
@@ -53,7 +52,7 @@ export class Library extends React.Component {
   }
 
   render() {
-   console.log('library props', this.props)
+   console.log('library props', this.state)
     return (
       <div className="folderContainer">
       {/* if there is no title the user is in the root directory so 
@@ -75,7 +74,7 @@ export class Library extends React.Component {
           </div>
         )}
         <hr />
-        {this.state.selectedFolder.title && (
+    
           <div>
             <div className="subHeaderContainer">
               <div className="subTitleContainer">
@@ -90,13 +89,12 @@ export class Library extends React.Component {
                     }}
                   >
                 <div className="add-folder-container"> <i class="material-icons medium">add</i></div>
-                  </Link>{" "}
-       
+                  </Link>
+
             </div>
             <br />
-            <CodeBlockDisplay codeBlocks={this.state.codeBlocks} />
+            {this.state.codeBlocks.length > 0 && <CodeBlockDisplay codeBlocks={this.state.codeBlocks} />}
           </div>
-        )}
         {this.state.selectedFolder.title && (
           <div className="subHeaderContainer">
             <div className="subTitleContainer">

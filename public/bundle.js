@@ -52465,7 +52465,6 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
   fetchData() {
     console.log(this.props);
     if (this.props.match.params.id) {
-      console.log("yeah dog");
       __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get(`http://localhost:8080/api/folders/${this.props.match.params.id}`).then(res => this.setState({
         folders: res.data.folders,
         codeBlocks: res.data.codeBlocks,
@@ -52478,7 +52477,7 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
   }
 
   render() {
-    console.log('library props', this.props);
+    console.log('library props', this.state);
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       "div",
       { className: "folderContainer" },
@@ -52509,7 +52508,7 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         )
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
-      this.state.selectedFolder.title && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
         null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -52544,11 +52543,10 @@ class Library extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                 "add"
               )
             )
-          ),
-          " "
+          )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__CodeBlockDisplay__["a" /* default */], { codeBlocks: this.state.codeBlocks })
+        this.state.codeBlocks.length > 0 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__CodeBlockDisplay__["a" /* default */], { codeBlocks: this.state.codeBlocks })
       ),
       this.state.selectedFolder.title && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
