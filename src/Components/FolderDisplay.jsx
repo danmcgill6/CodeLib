@@ -24,7 +24,7 @@ import SubmitModal from './SubmitModal'
             <Link to={`/library/${folder.id}`}>View</Link>
           </div>
           <div id="folderDelete">
-             <DeleteButton item={folder.title} apiRoute="/api/folders/" id={folder.id}/>
+             <DeleteButton item={folder.title} apiRoute="/api/folders/" id={folder.id} history={history}/>
           </div>
           </div>
         </div>

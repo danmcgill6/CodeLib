@@ -49,16 +49,17 @@ const customStyles = {
       }
 
    render(){
+     console.log('delete props', this.props)
     return ( 
         <div id='yourAppElement'>
-       <i className="material-icons icon-button">delete</i>
+       <i className="material-icons icon-button" onClick={this.openModal}>delete</i>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
         >
-        <h3>Are you sure you want to delete {this.props.item} ?</h3>
+        <h3>Are you sure you want to delete {this.props.item} ? and all of its contents</h3>
         <button className="waves-effect waves-light btn green" onClick={this.onSubmit}>YES</button>
         <button className="waves-effect waves-light btn red" onClick={this.closeModal}>NO</button>
 

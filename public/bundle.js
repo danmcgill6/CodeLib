@@ -52041,12 +52041,13 @@ class DeleteButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compone
   }
 
   render() {
+    console.log('delete props', this.props);
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { id: 'yourAppElement' },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'i',
-        { className: 'material-icons icon-button' },
+        { className: 'material-icons icon-button', onClick: this.openModal },
         'delete'
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -52062,7 +52063,7 @@ class DeleteButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compone
           null,
           'Are you sure you want to delete ',
           this.props.item,
-          ' ?'
+          ' ? and all of its contents'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'button',
@@ -52257,7 +52258,7 @@ const FolderDisplay = ({ folders, history }) => {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           { id: 'folderDelete' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DeleteButton__["a" /* default */], { item: folder.title, apiRoute: '/api/folders/', id: folder.id })
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DeleteButton__["a" /* default */], { item: folder.title, apiRoute: '/api/folders/', id: folder.id, history: history })
         )
       )
     )
