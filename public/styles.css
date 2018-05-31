@@ -3,13 +3,14 @@ pre {
     font-size: 1em;
     overflow: auto;
 }
-body {
+body{
   background-color: #363d391a;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
   font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif
 }
+
 
 #editFolder{
   position: absolute;
@@ -42,8 +43,9 @@ button{
 position: relative;
 }
 
-nav{
-  font-family: "PT Sans";
+nav a{
+  font-family: "Palanquin";
+  font-size: 18px;
 }
 
 

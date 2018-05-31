@@ -52724,9 +52724,28 @@ class Nav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'ul',
           { id: 'nav-mobile', className: 'left hide-on-med-and-down' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'a',
+              { href: 'sass.html' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'i',
+                { 'class': 'material-icons left' },
+                'search'
+              ),
+              'Link with Left Icon'
+            )
+          ),
           this.props.currentUser.email ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',
             null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'i',
+              { 'class': 'material-icons right' },
+              'view_module'
+            ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'li',
               null,
