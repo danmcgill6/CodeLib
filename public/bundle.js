@@ -52724,36 +52724,18 @@ class Nav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'ul',
           { id: 'nav-mobile', className: 'left hide-on-med-and-down' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'a',
-              { href: 'sass.html' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'i',
-                { 'class': 'material-icons left' },
-                'search'
-              ),
-              'Link with Left Icon'
-            )
-          ),
           this.props.currentUser.email ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'i',
-              { 'class': 'material-icons right' },
-              'view_module'
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'li',
-              null,
+              __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Link */],
+              { to: '/library' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Link */],
-                { to: '/library' },
-                'Your Library'
-              )
+                'i',
+                { className: 'material-icons left' },
+                'view_module'
+              ),
+              'Library'
             )
           ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',
@@ -52763,35 +52745,35 @@ class Nav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
               { to: '/codeInput' },
               'SignUp'
             )
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'ul',
-          { id: 'nav-mobile', className: 'right hide-on-med-and-down' },
-          this.props.currentUser.email && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Link */],
-              { to: '/codeInput' },
-              'Create Code Block'
-            )
           ),
-          this.props.currentUser.email ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            { onClick: this.onLogOut },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Link */],
-              { to: '/' },
-              'Logout'
-            )
-          ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Link */],
-              { to: '/login' },
-              'Login'
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'ul',
+            { id: 'nav-mobile', className: 'right hide-on-med-and-down' },
+            this.props.currentUser.email && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Link */],
+                { to: '/codeInput' },
+                'Create Code Block'
+              )
+            ),
+            this.props.currentUser.email ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              { onClick: this.onLogOut },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Link */],
+                { to: '/' },
+                'Logout'
+              )
+            ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Link */],
+                { to: '/login' },
+                'Login'
+              )
             )
           )
         )

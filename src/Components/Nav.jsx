@@ -23,13 +23,14 @@ class Nav extends Component {
       <div className="nav-wrapper">
       <Link to="/" className="brand-logo center">CodeLib</Link>
       <ul id="nav-mobile" className="left hide-on-med-and-down">
-      <li><a href="sass.html"><i class="material-icons left">search</i>Link with Left Icon</a></li>
-      {this.props.currentUser.email ? <li><i class="material-icons right">view_module</i><li><Link to="/library">Your Library</Link></li></li> : <li><Link to="/codeInput">SignUp</Link></li>}
-      </ul>
+        {
+            this.props.currentUser.email ? <li><Link to="/library"><i className="material-icons left">view_module</i>Library</Link></li>: <li><Link to="/codeInput">SignUp</Link></li>
+        }
       <ul id="nav-mobile" className="right hide-on-med-and-down">
           {this.props.currentUser.email && <li><Link to="/codeInput">Create Code Block</Link></li>}
           {this.props.currentUser.email ? <li onClick={this.onLogOut}><Link to="/">Logout</Link></li> : <li><Link to="/login">Login</Link></li>}
       </ul>
+        </ul>
     </div>
   </nav>
     );
